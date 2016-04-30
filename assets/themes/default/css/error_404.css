@@ -1,0 +1,44 @@
+.highlight {
+    margin-top: -81px !important;
+    background: #9C27B0;
+    display: inline;
+    color: #fff;
+    padding: 0 15px;
+}
+.well a, .well a:visited, .well a:focus {
+    color: #9C27B0;
+}
+.well a:hover {
+    color: #9C27B0;
+}
+#error-box {
+    margin-right: 10px;
+}
+#box-404 {
+    margin-top: 5%;
+}
+.ajs-message {
+    color: #ffffff;
+}
+img.bg {
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
+
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+
+    /* Set up positioning */
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+    img.bg {
+        left: 50%;
+        margin-left: -512px;   /* 50% */
+    }
+}
