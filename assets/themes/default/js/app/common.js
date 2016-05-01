@@ -17,6 +17,11 @@ $(function () {
     var page = $('#menu-page').data('page');
     $('#nav-'+page).addClass('active');
 
+    if($('.auto-show').length>0) {
+        setTimeout(function() {
+            $('#survey').modal('show');
+        }, 10000);
+    }
 
     $('.dropdown').mouseenter('show.bs.dropdown', function(e){
         $(this).find('.dropdown-menu').first().stop(true, true).slideDown(100);

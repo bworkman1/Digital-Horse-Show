@@ -162,7 +162,7 @@ class Grades extends CI_Model
         $coach = $this->db->get_where('users', array('id'=>$video->coach_id))->row();
         $scores = $this->db->get_where('scorecard_sections_7_scores', array('video_id'=>$video->id, 'card_id'=>$video->scorecard_id))->result();
 
-        if($this->session->userdata('user_id')==$video->user_id && empty($video->user_viewed)){
+        if($this->session->userdata('user_id')==$video->user_id && (empty($video->user_viewed) || $video->user_viewed == '0000-00-00 00:00:00')){
             $this->updateUserViewed($video->id);
         }
 

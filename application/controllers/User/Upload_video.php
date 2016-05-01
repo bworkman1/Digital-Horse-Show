@@ -14,11 +14,8 @@ class Upload_video extends CI_Controller
     {
         $this->load->js('assets/themes/default/plugins/uploadify/jquery.uploadify.min.js');
         $this->load->js('assets/themes/default/js/app/user-uploads.js');
-        $this->load->js('assets/themes/default/plugins/datepicker/js/bootstrap-datepicker.min.js');
         $this->load->js('assets/themes/default/js/app/common.js');
         $this->load->js('assets/themes/default/js/app/google-auto-complete.js');
-
-        $this->load->css('assets/themes/default/plugins/datepicker/css/bootstrap-datepicker3.standalone.css');
 
         $this->load->model('Security');
         $this->output->set_template('default');
@@ -65,16 +62,12 @@ class Upload_video extends CI_Controller
 
     public function upload()
     {
+        echo json_encode($_POST);
+        exit;
         $this->form_validation->set_rules('name', 'Video Name', 'required|max_length[100]|xss_clean|required|xss_clean');
         $this->form_validation->set_rules('location', 'Location', 'max_length[200]|xss_clean');
-        //$this->form_validation->set_rules('public', 'Public', 'max_length[1]|alpha|xss_clean');
         $this->form_validation->set_rules('lat', 'Latitude', 'max_length[100]|xss_clean');
         $this->form_validation->set_rules('lng', 'Longitude', 'max_length[100]|xss_clean');
-
-        //$this->form_validation->set_rules('comp_name', 'Competition name', 'max_length[100]|required|xss_clean');
-        //$this->form_validation->set_rules('comp_class', 'Competition Class', 'max_length[100]|required|xss_clean');
-        //$this->form_validation->set_rules('date', 'Competition Date', 'max_length[100]|required|xss_clean');
-        //$this->form_validation->set_rules('horse_name', 'Horse Name', 'max_length[100]|required|xss_clean');
         $this->form_validation->set_rules('coach', 'Coach', 'integer|required|xss_clean');
         $this->form_validation->set_rules('card_id', 'Scoring Type', 'integer|required|xss_clean');
 
@@ -88,7 +81,7 @@ class Upload_video extends CI_Controller
                 'public'        => $public = ''?$public='n':$public='y',
                 'date'          => $date,
                 'coach'         => $coach,
-                'scorecard_id'       => $card_id,
+                'scorecard_id'  => $card_id,
                 'date'          => date('Y-m-d'),
             );
 

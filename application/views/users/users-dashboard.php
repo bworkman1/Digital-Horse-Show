@@ -1,5 +1,5 @@
+<?php $this->load->view('ui-elements/ui-feedback'); ?>
 <div class="row">
-
     <div class="col-md-6">
 
        <div class="panel panel-info">
@@ -31,30 +31,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1.</td>
-                            <td>Video Name</td>
-                            <td class="text-center">344</td>
-                            <td class="text-right"><a href="#" class="btn btn-primary btn-sm">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>2.</td>
-                            <td>Video Name</td>
-                            <td class="text-center">344</td>
-                            <td class="text-right"><a href="#" class="btn btn-primary btn-sm">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>3.</td>
-                            <td>Video Name</td>
-                            <td class="text-center">344</td>
-                            <td class="text-right"><a href="#" class="btn btn-primary btn-sm">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>4.</td>
-                            <td>Video Name</td>
-                            <td class="text-center">344</td>
-                            <td class="text-right"><a href="#" class="btn btn-primary btn-sm">View</a></td>
-                        </tr>
+                    <?php
+                        if($recent_scores) {
+                            $count = 0;
+                            foreach ($recent_scores as $row) {
+                                $count++;
+                                echo '<tr>';
+                                echo '<td>' . $count . '.</td>';
+                                echo '<td>' . $row->client_name . '</td>';
+                                echo '<td class="text-center">' . $row->score . '</td>';
+                                echo '<td class="text-right"><a href="' . base_url('user/scorecard/view/' . $row->id) . '" class="btn btn-primary btn-sm">View</a></td>';
+                                echo '</tr>';
+                            }
+                        } else {
+                            echo '<tr><td colspan="4">No scored videos yet!</td></tr>';
+                        }
+                    ?>
+
                     </tbody>
                 </table>
             </div>

@@ -135,10 +135,16 @@ class User_videos extends CI_Model
         //return $result->row();
     }
 
-    public function getGradedVideos($user_id)
+    public function getGradedVideos($user_id, $limit = null, $viewed = false)
     {
-        $this->db->join('video_uploads', 'scoring.video_id = video_uploads.id');
-        $result = $this->db->get_where('scoring', array('scoring.user_id'=>$user_id));
+        if($limit) {
+            $this->db->limit($limit);
+        }
+        if($viewed) {
+            $this->db->where('user_viewed', NULL);
+        }
+        $this->db->where('score >', '0');
+        $result = $this->db->get_where('video_uploads', array('user_id'=>$user_id));
 
         return $result->result();
 

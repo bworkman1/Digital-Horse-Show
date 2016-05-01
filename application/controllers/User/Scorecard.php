@@ -31,11 +31,18 @@ class Scorecard extends CI_Controller
         if($video_id) {
             $this->load->model('Coach/Grades');
             $data = $this->Grades->getGradedCard($video_id);
-            $this->output->set_common_meta('Viewing Score | '.$data['video']->client_name, 'Digital Horse Show My Dashboard', '');
-
-            $this->load->view('common/scored-video-7', $data);
+            if($data['video']) {
+                $this->output->set_common_meta('Viewing Score | '.$data['video']->client_name, 'Digital Horse Show My Dashboard', '');
+                $this->load->view('common/scored-video-7', $data);
+            } else {
+                $this->session->set_flashdata('error', 'Invalid Selection');
+                redirect('user/dashboard');
+                exit;
+            }
         } else {
-            //send them somewhere
+            $this->session->set_flashdata('error', 'Invalid Selection');
+            redirect('user/dashboard');
+            exit;
         }
     }
 

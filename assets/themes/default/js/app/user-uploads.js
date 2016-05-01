@@ -29,6 +29,11 @@ $(function() {
         ]);
     });
 
+    if (!("FormData" in window)) {
+        // FormData is not supported; degrade gracefully/ alert the user as appropiate
+        alert('Uploads are not supported in your browser, please upgrade your browser to upload videos');
+    }
+
     $('#upload-form').submit(function(event) {
         event.preventDefault();
             var location = $('input[name="location"]').val();
@@ -40,26 +45,27 @@ $(function() {
 
             var file = _("file").files[0];
 
-            var formdata = new FormData();
+            var formData = new FormData();
 
-            formdata.append("file", file);
-            formdata.append("location", location);
-            formdata.append("lng", lng);
-            formdata.append("lat", lat);
-            formdata.append("name", name);
-        
-            formdata.append("coach", coach);
-            formdata.append("card_id", card_id);
-        
-            console.log(formdata);
+            formData.append("file", file);
+            formData.append("location", location);
+            formData.append("lng", lng);
+            formData.append("lat", lat);
+            formData.append("name", name);
+
+            formData.append("coach", coach);
+            formData.append("card_id", card_id);
+
+            console.log(formData);
+            var url = $('#upload-form').prop('action');
+            console.log(url);
             $.ajax({
-                url: $('#upload-form').prop('action'),
+                url: url,
                 type: 'POST',
-                data: formdata,
-                cache: false,
+                data: formData,
                 contentType: false,
-                processData: false,
-                dataType: 'json',
+                cache: false,
+                processData:false,
                 xhr: function() {
                     var xhr = $.ajaxSettings.xhr();
                     if (xhr.upload) {
@@ -99,7 +105,7 @@ $(function() {
                     $('.alert-warning').remove();
 
                 },
-            }, 'json');
+            });
     });
 
     function _(el){

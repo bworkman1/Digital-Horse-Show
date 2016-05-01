@@ -1,4 +1,4 @@
-<div id="survey" class="modal fade" role="dialog" <?php if(empty($video->user_viewed)) {echo 'auto-populate';} ?>>
+<div id="survey" class="modal fade <?php if($viewed=='0000-00-00 00:00:00') {echo 'auto-show';} ?>" role="dialog" <?php if(empty($video->user_viewed)) {echo 'auto-populate';} ?>>
     <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->

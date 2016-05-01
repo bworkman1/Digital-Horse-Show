@@ -16,9 +16,8 @@
                         </object>
                     </video>
                 </div>
-                <br>
-                <?php $this->load->view('ui-elements/user-profile-card'); ?>
             </div>
+            <?php $this->load->view('ui-elements/user-profile-card'); ?>
 
         </div>
         <div class="col-lg-8">
@@ -128,7 +127,8 @@
 
     <?php
         if($video->user_id == $this->session->userdata('user_id')) {
-            $this->load->view('ui-elements/user-survey-modal');
+            $data['viewed'] = $video->user_viewed;
+            $this->load->view('ui-elements/user-survey-modal', $data);
         }
     ?>
 

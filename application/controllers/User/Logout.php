@@ -7,6 +7,7 @@ class Logout extends CI_Controller
     public function index()
     {
         $this->ion_auth->logout();
+        $this->session->sess_destroy();
         $this->session->set_flashdata('success', 'You have been logged out');
         redirect('login');
     }

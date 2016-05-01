@@ -70,7 +70,7 @@
                     echo '</div>';
 
                     echo '<div class="pull-right">';
-                    echo '<b>Score:</b> '.$val->total;
+                    echo '<b>Score:</b> '.$val->score;
                     echo '</div>';
                     echo '</div>';
 
