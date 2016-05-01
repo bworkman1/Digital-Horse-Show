@@ -74,4 +74,37 @@ class Widgets extends CI_Model
 
     }
 
+    public function getScoresForChart()
+    {
+        $sql = 'SELECT score, date FROM video_uploads WHERE score > 0 AND user_id = "'.$this->session->userdata('user_id').'" LIMIT 15';
+        $result = $this->db->query($sql);
+        $full = '';
+        if($result->num_rows()>0) {
+            $data = array();
+            $labels = array();
+
+            foreach ($result->result() as $row) {
+                $labels[] = date('M', strtotime($row->date));
+                $data[] = $row->score;
+            }
+
+            $datasets[] = array(
+                'label' => 'Scores By Month',
+                'fillColor' => 'rgba(213,189,228,0.2)',
+                'strokeColor' => 'rgba(213,189,228,1)',
+                'pointColor' => 'rgba(156, 39, 176,1)',
+                'pointStrokeColor' => '#fff',
+                'pointHighlightFill' => '#fff',
+                'pointHighlightStroke' => 'rgba(156, 39, 176,1)',
+                'data' => $data
+            );
+
+            $full = array(
+                'labels' => $labels,
+                'datasets' => $datasets,
+            );
+        }
+        return $full;
+    }
+    
 }

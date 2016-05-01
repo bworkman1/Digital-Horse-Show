@@ -89,6 +89,7 @@ class Upload_video extends CI_Controller
                 'date'          => $date,
                 'coach'         => $coach,
                 'scorecard_id'       => $card_id,
+                'date'          => date('Y-m-d'),
             );
 
             if(!empty($lat) && !empty($lng)) {

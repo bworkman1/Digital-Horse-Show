@@ -298,3 +298,5 @@
         </div>
     </div>
 </div>
+
+<div id="baseUrl" data-base="<?php echo base_url(); ?>"></div>

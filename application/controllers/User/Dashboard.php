@@ -42,4 +42,11 @@ class Dashboard extends CI_Controller
 
     }
 
+    /* AJAX CALLS */
+    public function getScoresGraphValues()
+    {
+        $this->output->unset_template();
+        $this->load->model('Widgets');
+        echo json_encode($this->Widgets->getScoresForChart());
+    }
 }

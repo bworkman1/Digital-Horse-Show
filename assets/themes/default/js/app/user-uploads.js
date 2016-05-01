@@ -1,9 +1,9 @@
 $(function() {
-    var baseUrl = 'http://localhost/horse/';
-
     $('#coach-help').click(function(event) {
         event.preventDefault();
     });
+
+    $('#video-name').focus();
 
     $('.coach-selected').click(function() {
         var selection = $(this).data('id');
@@ -35,33 +35,31 @@ $(function() {
             var lng = $('input[name="lng"]').val();
             var lat = $('input[name="lat"]').val();
             var name = $('input[name="name"]').val();
-
-            var comp_name = $('input[name="comp_name"]').val();
-            var comp_class = $('input[name="comp_class"]').val();
-            var date = $('input[name="date"]').val();
-            var horse_name = $('input[name="horse_name"]').val();
             var coach = $('select[name="coach"]').val();
             var card_id = $('select[name="card_id"]').val();
 
             var file = _("file").files[0];
 
             var formdata = new FormData();
+
             formdata.append("file", file);
             formdata.append("location", location);
             formdata.append("lng", lng);
             formdata.append("lat", lat);
             formdata.append("name", name);
-
-            formdata.append("comp_name", comp_name);
+        
             formdata.append("coach", coach);
-            formdata.append("comp_class", comp_class);
-            formdata.append("date", date);
-            formdata.append("horse_name", horse_name);
             formdata.append("card_id", card_id);
-
+        
+            console.log(formdata);
             $.ajax({
-                url: baseUrl+'user/upload-video/upload/',
+                url: $('#upload-form').prop('action'),
                 type: 'POST',
+                data: formdata,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
                 xhr: function() {
                     var xhr = $.ajaxSettings.xhr();
                     if (xhr.upload) {
@@ -73,9 +71,8 @@ $(function() {
                     return xhr;
                 },
                 success: function(data) {
-                    console.log(data);
                     if(typeof data.success != 'undefined') {
-                        window.location.href = baseUrl + "user/my-uploads";
+                        window.location.href = $('#baseUrl').data('base') + "user/my-uploads";
                     } else {
                         console.log('show error');
                         $(".progress-bar").width("0%");
@@ -102,11 +99,6 @@ $(function() {
                     $('.alert-warning').remove();
 
                 },
-                data: formdata,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: 'json',
             }, 'json');
     });
 

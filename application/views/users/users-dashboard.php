@@ -2,17 +2,12 @@
 
     <div class="col-md-6">
 
-        <div class="alert alert-info">
-            <p>This page will be used for quick info and links to get around the app. Once we get the awards and shopping cart
-                added we can add things here automatically to the users page. Also this page will be dynamic according to the user type. Reg. users
-                see this page, coaches will see different things, and admins will see another.</p>
-        </div>
-
        <div class="panel panel-info">
             <div class="panel-heading">
-                <h5 style="color: #ffffff;">My Scores Chart</h5>
+                My Scores Chart
             </div>
-            <div class="panel-body">
+            <div class="panel-body" id="graph-chart" data-graphurl="<?php echo base_url('user/dashboard/getScoresGraphValues'); ?>">
+                <div id="noneFound"></div>
                 <canvas id="linechart-canvas" height="300" width="550"></canvas>
             </div>
         </div>
@@ -21,23 +16,47 @@
 
     <div class="col-md-6">
 
-        <div class="row">
-            <div class="col-md-6">
-
-                <div class="well well-sm well-colored">
-                    <h4>4 Credits Left</h4>
-                    <p>Will display how many credits/scored uploads the user has once logic is complete</p>
-                </div>
-
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Recent Scores
             </div>
-
-            <div class="col-md-6">
-
-                <div class="well well-sm well-colored">
-                    <h4>5 Scored</h4>
-                    <p>Show how many scored uploads the user has and maybe the 5 most recent scores.</p>
-                </div>
-
+            <div class="panel-body">
+                <table class="table table-striped table-condensed">
+                    <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Name</td>
+                            <td class="text-center">Score</td>
+                            <td class="text-right">View</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td>Video Name</td>
+                            <td class="text-center">344</td>
+                            <td class="text-right"><a href="#" class="btn btn-primary btn-sm">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td>Video Name</td>
+                            <td class="text-center">344</td>
+                            <td class="text-right"><a href="#" class="btn btn-primary btn-sm">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td>Video Name</td>
+                            <td class="text-center">344</td>
+                            <td class="text-right"><a href="#" class="btn btn-primary btn-sm">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td>Video Name</td>
+                            <td class="text-center">344</td>
+                            <td class="text-right"><a href="#" class="btn btn-primary btn-sm">View</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
