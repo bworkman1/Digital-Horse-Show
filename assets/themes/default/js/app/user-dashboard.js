@@ -1,22 +1,27 @@
 $(function() {
     var ctx = document.getElementById("linechart-canvas").getContext("2d");
 
-    var data = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-            {
-                label: "My Second dataset",
-                fillColor: "rgba(213,189,228,0.2)",
-                strokeColor: "rgba(213,189,228,1)",
-                pointColor: "rgba(156, 39, 176,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(156, 39, 176,1)",
-                data: [80, 95, 75, 120, 140, 125, 105]
+    $.ajax({
+        url: $('#graph-chart').data('graphurl'),
+        dataType: 'json',
+        success: function(data) {
+            if(data) {
+                var myLineChart = new Chart(ctx).Line(data);
+            } else {
+                $('#noneFound').html('You have no scores yet, once you start submitting videos to judges you will see a chart of your scores here.');
             }
-        ]
-    };
+        },
+        error: function(xhr) {
+            console.log(xhr);
+        },
+        beforeSend: function() {
 
-    var myLineChart = new Chart(ctx).Line(data);
+        },
+        complete: function() {
+
+        },
+    });
+
+
 
 });
