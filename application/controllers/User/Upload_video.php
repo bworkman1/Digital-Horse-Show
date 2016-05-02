@@ -62,8 +62,7 @@ class Upload_video extends CI_Controller
 
     public function upload()
     {
-        echo json_encode($_POST);
-        exit;
+        $this->output->set_template('blank');
         $this->form_validation->set_rules('name', 'Video Name', 'required|max_length[100]|xss_clean|required|xss_clean');
         $this->form_validation->set_rules('location', 'Location', 'max_length[200]|xss_clean');
         $this->form_validation->set_rules('lat', 'Latitude', 'max_length[100]|xss_clean');
@@ -72,7 +71,6 @@ class Upload_video extends CI_Controller
         $this->form_validation->set_rules('card_id', 'Scoring Type', 'integer|required|xss_clean');
 
         if ($this->form_validation->run() == true) {
-            $this->output->set_template('blank');
             $this->load->model('Uploads');
             extract($_POST);
             $input = array(
@@ -91,7 +89,7 @@ class Upload_video extends CI_Controller
             $feedback = $this->Uploads->uploadVideo($_FILES, $input);
             $this->session->set_flashdata('success', 'Video uploaded successfully');
         } else {
-            $feedback = array('error' => validation_errors('<span>','</span>'));
+            $feedback = array('error' => validation_errors('<span><i class="fa fa-exclamation-triangle"></i> ','</span><br>'));
         }
 
         echo json_encode($feedback);

@@ -36,76 +36,85 @@ $(function() {
 
     $('#upload-form').submit(function(event) {
         event.preventDefault();
-            var location = $('input[name="location"]').val();
-            var lng = $('input[name="lng"]').val();
-            var lat = $('input[name="lat"]').val();
-            var name = $('input[name="name"]').val();
-            var coach = $('select[name="coach"]').val();
-            var card_id = $('select[name="card_id"]').val();
 
-            var file = _("file").files[0];
+        var location = $('input[name="location"]').val();
+        var lng = $('input[name="lng"]').val();
+        var lat = $('input[name="lat"]').val();
+        var name = $('input[name="name"]').val();
+        var card_id = '';
+        $('.scoring-type').each(function()  {
+           if(!$(this).hasClass('hide')) {
+               card_id = $(this).find('select').val();
+           }
+        });
 
-            var formData = new FormData();
+        var coach = $('select[name="coach"]').val();
+        var file = _("file").files[0];
 
-            formData.append("file", file);
-            formData.append("location", location);
-            formData.append("lng", lng);
-            formData.append("lat", lat);
-            formData.append("name", name);
+        var formData = new FormData();
+        console.log(file);
+        formData.append("file", file);
+        formData.append("location", location);
+        formData.append("lng", lng);
+        formData.append("lat", lat);
+        formData.append("name", name);
+        formData.append("coach", coach);
+        formData.append("card_id", card_id);
+        //for(var pair of formData.entries()) {
+          //  console.log(pair[0]+ ', '+ pair[1]);
+       // }
+        var url = $('#upload-form').prop('action');
 
-            formData.append("coach", coach);
-            formData.append("card_id", card_id);
-
-            console.log(formData);
-            var url = $('#upload-form').prop('action');
-            console.log(url);
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: formData,
-                contentType: false,
-                cache: false,
-                processData:false,
-                xhr: function() {
-                    var xhr = $.ajaxSettings.xhr();
-                    if (xhr.upload) {
-                        xhr.upload.addEventListener('progress', function(evt) {
-                            var percent = (evt.loaded / evt.total) * 100;
-                            $(".progress-bar").width(percent + "%");
-                        }, false);
-                    }
-                    return xhr;
-                },
-                success: function(data) {
-                    if(typeof data.success != 'undefined') {
-                        window.location.href = $('#baseUrl').data('base') + "user/my-uploads";
-                    } else {
-                        console.log('show error');
-                        $(".progress-bar").width("0%");
-                        $('#feedback').html('<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> '+data.error+'</div>');
-                    }
-                },
-                error: function() {
-                    console.log('error');
-                    $("#feedback").html('<div class="alert alert-danger">' +
-                        '<i class="fa fa-exclamation-triangle"></i> Upload failed, try refreshing the page and trying again!</div>');
-                },
-                beforeSend: function() {
-                    $("#feedback").html('');
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            cache: false,
+  
+            processData:false,
+            xhr: function() {
+                var xhr = $.ajaxSettings.xhr();
+                if (xhr.upload) {
+                    xhr.upload.addEventListener('progress', function(evt) {
+                        var percent = (evt.loaded / evt.total) * 100;
+                        $(".progress-bar").width(percent + "%");
+                    }, false);
+                }
+                return xhr;
+            },
+            success: function(data) {
+                if(typeof data.success != 'undefined') {
+                    window.location.href = $('#baseUrl').data('base') + "user/my-uploads";
+                } else {
+                    console.log('show error');
                     $(".progress-bar").width("0%");
-                    $('#submit').html('<i class="fa fa-spinner fa-spin"></i> Uploading Video').attr('disabled', true);
-                    $('input[name="file"]').attr('disabled', true);
-                    $('#upload-heading').after('<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Warning: Your file is uploading, please dont leave this page</div>');
-                    $('.progress').removeClass('hide');
-                },
-                complete: function() {
-                    //$('.progress').addClass('hide');
-                    $('#submit').html('Submit').attr('disabled', false);
-                    $('input[name="file"]').attr('disabled', false);
-                    $('.alert-warning').remove();
+                    $('#feedback').html('<div class="alert alert-danger"> '+data.error+'</div>');
+                }
+            },
+            error: function(xhr, a, b) {
+                console.log(xhr);
+                console.log(a);
+                console.log(b);
+                $("#feedback").html('<div class="alert alert-danger">' +
+                    '<i class="fa fa-exclamation-triangle"></i> Upload failed, try refreshing the page and trying again!</div>');
+            },
+            beforeSend: function() {
+                $("#feedback").html('');
+                $(".progress-bar").width("0%");
+                $('#submit').html('<i class="fa fa-spinner fa-spin"></i> Uploading Video').attr('disabled', true);
+                $('input[name="file"]').attr('disabled', true);
+                $('#upload-heading').after('<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Warning: Your file is uploading, please dont leave this page</div>');
+                $('.progress').removeClass('hide');
+            },
+            complete: function() {
+                //$('.progress').addClass('hide');
+                $('#submit').html('Submit').attr('disabled', false);
+                $('input[name="file"]').attr('disabled', false);
+                $('.alert-warning').remove();
 
-                },
-            });
+            },
+        });
     });
 
     function _(el){
