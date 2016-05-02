@@ -141,3 +141,5 @@
         </div>
     </div>
 </div>
+
+<div id="payment-success" data-url="<?php echo base_url('user/upload-video'); ?>"></div>

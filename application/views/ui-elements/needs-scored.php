@@ -10,6 +10,7 @@
                         foreach($scored as $item) {
                             echo '<li class="needs-scored">';
                                 echo '<a href="'.base_url('coach/scorecard/grade/'.$item->id).'">';
+                                    echo '<button class="btn btn-primary pull-right btn-sm" style="margin-top: 5px">Score</button>';
                                     echo '<img src="'.base_url($item->user_image).'" class="img-circle pull-left" width="50" height="50">';
                                     echo '<h5 class="no-margin">'.$item->first_name.' '.$item->last_name.'</h5>';
                                     echo '<p><i class="fa fa-calendar"></i> '.date('m-d-Y h:i a', strtotime($item->uploaded)).'</p>';
@@ -19,6 +20,8 @@
                         }
                     echo '</ul>';
                 echo '</div>';
+                echo '<br>';
+                echo '<a href="'.base_url().'" class="btn btn-primary">View All</a>';
             } else {
                 echo '<i class="fa fa-thumbs-o-up margin text-info fa-3x pull-left"></i>';
                 echo '<h5 class="no-margin">You are all caught up</h5>';

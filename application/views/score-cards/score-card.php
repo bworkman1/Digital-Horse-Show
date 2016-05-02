@@ -17,10 +17,12 @@
                     </object>
                 </video>
             </div>
-            <br>
-            <?php $this->load->view('ui-elements/user-profile-card'); ?>
         </div>
 
+        <?php
+            $profile['profile'] = $user_profile;
+            $this->load->view('ui-elements/user-profile-card', $profile);
+        ?>
     </div>
     <div class="col-lg-8">
         <?php echo form_open('coach/scorecard/add-grade/'.$this->uri->segment(4), array('id'=>'scoreCard')); ?>
@@ -117,7 +119,7 @@
     </div>
 </div>
 
-
+<div id="redirect" data-redirect="<?php echo base_url('coach/view/scorecard/'.$this->uri->segment(4)); ?>"></div>
 
 <div id="score-help" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">

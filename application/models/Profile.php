@@ -15,6 +15,21 @@ class Profile extends CI_Model
 
     }
 
+    public function getUserProfileWidget($video_id, $type)
+    {
+        $result = $this->db->get_where('video_uploads', array('id' => $video_id));
+        if($result->num_rows()>0) {
+            $video = $result->row();
+            if($type == 'coach') {
+                $user = $this->db->get_where('users', array('id'=>$video->coach_id));
+            } else {
+                $user = $this->db->get_where('users', array('id' => $video->user_id));
+            }
+            return $user->row();
+        }
+        return false;
+    }
+
     public function getUserProfilePage($unique_name)
     {
         $result = $this->db->get_where('users', array('profile_name'=>$unique_name, 'profile_public' => 'yes'));

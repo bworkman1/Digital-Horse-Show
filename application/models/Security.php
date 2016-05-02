@@ -6,17 +6,19 @@ class Security extends CI_Model
     function __construct()
     {
         parent::__construct();
-        $url = current_url();
-        $this->load->helper('cookie');
-        $this->input->set_cookie(array(
-            'name'      => 'url',
-            'value'     => current_url(),
-            'expire'    => '86500',
-            'domain'    => 'localhost',
-            'path'      => '/',
-        ));
-        $this->session->set_userdata('url_redirect', $url);
-        $this->_init();
+        if (!$this->input->is_ajax_request()) {
+            $url = current_url();
+            $this->load->helper('cookie');
+            $this->input->set_cookie(array(
+                'name' => 'url',
+                'value' => current_url(),
+                'expire' => '86500',
+                'domain' => 'localhost',
+                'path' => '/',
+            ));
+            $this->session->set_userdata('url_redirect', $url);
+            $this->_init();
+        }
     }
 
     private function _init()

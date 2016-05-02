@@ -1,5 +1,5 @@
 $(function() {
-    var base_url = '//localhost/horse/';
+    var base_url = '//localhost/digitalhorseshow/';
     var height = $( '.videoSide' ).height();
     var width = $( window ).width();
     if (width > 1199) {
@@ -131,9 +131,8 @@ $(function() {
             dataType: 'json',
             success: function(data) {
                 if(typeof data.success != 'undefined') {
-                    /*TODO FIX THIS ONE WHEN IT HAS A  PAGE*/
                     $('#ajax-feedback').html('<div class="alert alert-success"><b><i class="fa fa-check-circle"></i> Success: </b>Your scores have been submitted');
-                    window.location.href = base_url+'/coach/';
+                    window.location.href = $('#redirect').data('redirect');
                 } else {
                     $('#ajax-feedback').html('<div class="alert alert-danger"><b><i class="fa fa-exclamation-triangle"></i> Error: </b>'+data.error+'</div>');
                 }

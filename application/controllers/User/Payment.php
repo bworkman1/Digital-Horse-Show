@@ -38,7 +38,6 @@ class Payment extends CI_Controller
 
     public function submit()
     {
-        $this->output->enable_profiler(false);
         $this->output->unset_template();
         $this->form_validation->set_rules('coaching_credits', 'Coaching Credits', 'required|min_length[1]|max_length[2]|integer');
         $this->form_validation->set_rules('card_name', 'Card Name', 'required|min_length[4]|max_length[60]');
@@ -64,13 +63,7 @@ class Payment extends CI_Controller
             $feedback = array('error'=>validation_errors('<span>','</span>'));
         }
 
-        if($this->input->is_ajax_request()) {
-            echo json_encode($feedback);
-        } else {
-           $this->session->set_flashdata($feedback);
-            redirect('user/payment');
-            exit;
-        }
+        echo json_encode($feedback);
 
     }
 

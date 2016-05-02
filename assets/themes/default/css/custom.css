@@ -390,9 +390,9 @@ Recent Comments Widget
 }
 #recent-comments ul li, .limited-height ul li {
 	list-style-type: none;
-	padding: 5px 15px;
+	padding: 5px 5px 0px 5px;
 	margin: 0;
-	line-height: 1.1em;
+	line-height: 2em;
 	border-bottom: 1px solid #444444;
 }
 #recent-comments ul li:last-child {
@@ -430,6 +430,16 @@ Recent Comments Widget
 }
 #recent-comments li.no-style {
 	border-bottom: none;
+}
+.needs-scored p {
+	margin: 0;
+}
+.needs-scored a {
+	color: #444444;
+	text-decoration: none;
+}
+li.needs-scored:hover {
+	background-color: #F6F1FA;
 }
 /*
 Search Video

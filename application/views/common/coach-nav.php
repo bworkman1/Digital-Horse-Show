@@ -36,7 +36,7 @@
             <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img id="user-thumb" src="<?php echo base_url($this->session->userdata('user_image')); ?>" class="img-circle" width="50" height="50">
+                        <div><img id="user-thumb" src="<?php echo base_url($this->session->userdata('user_image')); ?>" class="img-circle" width="50" height="50"></div>
                     </a>
                     <ul class="dropdown-menu">
                         <li id="nav-my-profile"><a href="<?php echo base_url('user/my-profile'); ?>"><i class="fa fa-user"></i> My Profile</a></li>

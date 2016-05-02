@@ -30,8 +30,10 @@ class Scorecard extends CI_Controller
         $video_id = $this->uri->segment(4);
         if($video_id) {
             $this->load->model('Coach/Grades');
+            $this->load->model('Profile');
             $data = $this->Grades->getGradedCard($video_id);
             if($data['video']) {
+                $data['user_profile'] = $this->Profile->getUserProfileWidget($video_id, 'coach');
                 $this->output->set_common_meta('Viewing Score | '.$data['video']->client_name, 'Digital Horse Show My Dashboard', '');
                 $this->load->view('common/scored-video-7', $data);
             } else {

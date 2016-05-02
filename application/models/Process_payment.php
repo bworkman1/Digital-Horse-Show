@@ -40,7 +40,7 @@ class Process_payment extends CI_Model
             $this->logPayment($data);
             $this->sendThankYouEmail();
             if($this->updateUsersCredits($data)) {
-                $this->mSuccess = 'Your payment was successful, we emailed you the details of the transaction. You can now submit up * videos and NAME will grade them.';
+                $this->mSuccess = 'Your payment was successful, we emailed you the details of the transaction.';
                 return true;
             } else {
                 $this->mError = 'Your card was successfully charged but credits failed to add to your account. Contact support and let us know and reference '.$this->mTransId.'.';

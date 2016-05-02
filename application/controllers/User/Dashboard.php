@@ -30,7 +30,8 @@ class Dashboard extends CI_Controller
             redirect('admin/dashboard');
             exit;
         } elseif($this->ion_auth->in_group('coach')) {
-            $this->load->view('coach/coach-dashboard', $data);
+            redirect('coach/dashboard');
+            exit;
         } else {
             $this->load->model('User_videos');
             $data['recent_scores'] = $this->User_videos->getGradedVideos($this->session->userdata('user_id'), 5);

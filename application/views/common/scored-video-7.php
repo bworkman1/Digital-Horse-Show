@@ -17,7 +17,10 @@
                     </video>
                 </div>
             </div>
-            <?php $this->load->view('ui-elements/user-profile-card'); ?>
+            <?php
+                $profile['profile'] = $user_profile;
+                $this->load->view('ui-elements/user-profile-card', $profile);
+            ?>
 
         </div>
         <div class="col-lg-8">

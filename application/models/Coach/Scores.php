@@ -8,5 +8,9 @@ class Scores extends CI_Model
         parent::__construct();
     }
 
+    function view()
+    {
+
+    }
 
 }

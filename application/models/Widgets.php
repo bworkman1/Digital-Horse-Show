@@ -36,8 +36,11 @@ class Widgets extends CI_Model
         return $query->result();
     }
 
-    public function coachNeedsScored()
+    public function coachNeedsScored($limit = false)
     {
+        if($limit) {
+            $this->db->limit($limit);
+        }
         $this->db->select('users.first_name, users.last_name, users.user_image, video_uploads.id, video_uploads.uploaded');
         $this->db->join('users', 'video_uploads.user_id = users.id');
         $result = $this->db->get_where('video_uploads', array('coach_id' => $this->session->userdata('user_id'), 'star_rating'=>0));
@@ -106,5 +109,38 @@ class Widgets extends CI_Model
         }
         return $full;
     }
-    
+
+    public function getCoachVideosChart()
+    {
+        $sql = 'SELECT DATE_FORMAT(uploaded, "%Y-%m-%d") AS Month, COUNT(uploaded) AS videos FROM video_uploads GROUP BY DATE_FORMAT(uploaded, "%Y-%m") LIMIT 12';
+        $result = $this->db->query($sql);
+        $full = '';
+        if($result->num_rows()>0) {
+            $data = array();
+            $labels = array();
+
+            foreach ($result->result() as $row) {
+                $labels[] = date('M', strtotime($row->Month));
+                $data[] = $row->videos;
+            }
+
+            $datasets[] = array(
+                'label' => 'Videos By Month',
+                'fillColor' => 'rgba(213,189,228,0.2)',
+                'strokeColor' => 'rgba(213,189,228,1)',
+                'pointColor' => 'rgba(156, 39, 176,1)',
+                'pointStrokeColor' => '#fff',
+                'pointHighlightFill' => '#fff',
+                'pointHighlightStroke' => 'rgba(156, 39, 176,1)',
+                'data' => $data
+            );
+
+            $full = array(
+                'labels' => $labels,
+                'datasets' => $datasets,
+            );
+        }
+        return $full;
+    }
+
 }

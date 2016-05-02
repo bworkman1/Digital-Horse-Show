@@ -125,13 +125,16 @@ $(function() {
                 var $icon = data.element.data('fv.icon');
                 $icon.removeClass().addClass('form-control-feedback fa fa-times');
             }
-        });
+        }).on('success.form.fv', function(e) {
+            e.preventDefault();
+            submitPayment();
+    });
 
-    $('#payment-form').submit(function(event) {
+   // $('#payment-form').submit(function(event) {
+    function submitPayment() {
         event.preventDefault();
-        var data = $(this).serialize();
-        var url = $(this).attr('action');
-
+        var data = $('#payment-form').serialize();
+        var url = $('#payment-form').attr('action');
         $.ajax({
             url: url,
             type: 'POST',
@@ -140,7 +143,7 @@ $(function() {
             success: function(data) {
                 if(typeof data.success != 'undefined') {
                     alertify.success('Your payment has been made', 0);
-                    window.location.href = "http://localhost/horse/user/upload-video";
+                    window.location.href = $('#payment-success').data('url');
                 } else {
                     alertify.error(data.error);
                 }
@@ -157,6 +160,6 @@ $(function() {
                 $('button[type="submit"]').prop('disabled', false).removeClass('disabled').html('Pay Now');
             },
         });
-    });
+    }
 
 });
