@@ -29,7 +29,7 @@ class View extends CI_Controller
 
     public function pay_coach()
     {
-        $this->output->set_common_meta('Coach - Make a Payment', 'Digital Horse Show My Dashboard', '');
+        $this->output->set_common_meta('Admin - Make a Payment', 'Digital Horse Show My Dashboard', '');
 
         $this->load->model('Admin/Admin_settings');
         $this->load->model('Admin/Payments');
@@ -52,6 +52,22 @@ class View extends CI_Controller
         $data['paid_per'] = $this->Admin_settings->getSetting('paid_per_video');
 
         $this->load->view('admin/needs-paid', $data);
+    }
+
+    public function all_payments()
+    {
+        $this->output->set_common_meta('Admin - All Payment', 'Digital Horse Show My Dashboard', '');
+        $this->load->js('assets/themes/default/js/app/view-payments.js');
+        $id = (int)$this->uri->segment(4);
+
+        $this->load->model('Payments');
+
+        if($id) {
+            $data = $this->Payments->init_payment_page($id);
+        } else {
+            $data = $this->Payments->init_payment_page();
+        }
+        $this->load->view('common/view-payments', $data);
     }
 
     public function coach_payments()

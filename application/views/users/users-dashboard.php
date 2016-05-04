@@ -18,7 +18,7 @@
 
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Recent Scores
+                <i class="fa fa-bar-chart"></i> Recent Scores
             </div>
             <div class="panel-body">
                 <table class="table table-striped table-condensed">

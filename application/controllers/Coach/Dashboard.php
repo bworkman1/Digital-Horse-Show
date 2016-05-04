@@ -32,7 +32,10 @@ class Dashboard extends CI_Controller
         $data['page_name'] = 'dashboard';
         $data['scored'] = $this->widgets->coachNeedsScored(5);
         $data['scoredThisMonth'] = $this->widgets->coachScoredThisMonth();
-
+        $data['waiting_score'] = $this->widgets->waitingToBeScored($this->session->userdata('user_id'));
+        $data['money_made'] = $this->widgets->payments($this->session->userdata('user_id'));
+        $data['waiting_approval'] = $this->widgets->waitingApproval($this->session->userdata('user_id'));
+        
         $this->load->view('coach/coach-dashboard', $data);
     }
 

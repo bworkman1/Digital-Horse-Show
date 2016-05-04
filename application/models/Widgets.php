@@ -36,6 +36,31 @@ class Widgets extends CI_Model
         return $query->result();
     }
 
+    public function waitingToBeScored($id)
+    {
+        $result = $this->db->get_where('video_uploads', array('coach_id'=>$id, 'score' => NULL));
+        return count($result->result());
+    }
+
+    public function payments($id)
+    {
+        $this->db->select_sum('amount');
+        $this->db->where('coach_id', $id);
+        $query = $this->db->get('coach_payments');
+        $money = $query->row();
+        if($money->amount) {
+            return number_format($money->amount, 2);
+        } else {
+            return '0.00';
+        }
+    }
+
+    public function waitingApproval($id)
+    {
+        $result = $this->db->get_where('video_uploads', array('coach_id'=>$id, 'payment_id' => '0'));
+        return count($result->result());
+    }
+
     public function coachNeedsScored($limit = false)
     {
         if($limit) {
@@ -59,22 +84,6 @@ class Widgets extends CI_Model
         $this->db->from('video_uploads');
         $count = $this->db->count_all_results();
         return $count = ($count)?$count:0;
-    }
-
-    public function coachTicketsPurchased()
-    {
-        $this->db->select('credits, remaining');
-        $result = $this->db->get_where('payments', array('coach_id'=>$this->session->userdata('user_id')));
-
-        $total = 0;
-        $left = 0;
-        foreach($result->result() as $row) {
-            $total = $total+$row->credits;
-            $left = $left+$row->remaining;
-        }
-
-        return array('total' => $total, 'left' => $left);
-
     }
 
     public function getScoresForChart()

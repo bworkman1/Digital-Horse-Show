@@ -294,7 +294,7 @@ i.margin {
 	margin-top: 3px;
 	margin-bottom: 10px;
 }
-i.form-control-feedback {
+#payment i.form-control-feedback {
     margin-top: 13px;
 }
 .alert h5 {
@@ -303,6 +303,22 @@ i.form-control-feedback {
 .card-purple {
 	background: #002447;
 	color: #ffffff;
+}
+a.btn-default {
+	color: #444444 !important;
+}
+.table-hover>tbody>tr:hover {
+	 background-color: #eeefef;
+}
+.table-hover>thead {
+	background-color: rgb(52, 0, 55);
+	color: #fff;
+}
+.table-hover tbody td {
+	border-right: 1px solid #ccc;
+}
+.table-hover thead td, .table-hover tfoot td {
+	border-right: 1px solid #fff;
 }
 .card-purple .card-head {
 	padding: 15px;

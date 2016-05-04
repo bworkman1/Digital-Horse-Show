@@ -52,7 +52,6 @@ $(function() {
         var file = _("file").files[0];
 
         var formData = new FormData();
-        console.log(file);
         formData.append("file", file);
         formData.append("location", location);
         formData.append("lng", lng);
@@ -60,9 +59,7 @@ $(function() {
         formData.append("name", name);
         formData.append("coach", coach);
         formData.append("card_id", card_id);
-        //for(var pair of formData.entries()) {
-          //  console.log(pair[0]+ ', '+ pair[1]);
-       // }
+
         var url = $('#upload-form').prop('action');
 
         $.ajax({
@@ -71,7 +68,7 @@ $(function() {
             data: formData,
             contentType: false,
             cache: false,
-  
+            dataType: 'json',
             processData:false,
             xhr: function() {
                 var xhr = $.ajaxSettings.xhr();

@@ -5,92 +5,97 @@
 </div>
     <form id="makePayment" data-url="<?php echo base_url('admin/view/post-payment'); ?>">
     <div class="container">
-        <div class="well well-sm">
+
 
             <div class="row">
                 <div class="col-md-9">
-                    <div class="panel">
-                        <div class="panel-heading">
-
+                    <div class="well well-sm">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Awaiting Payment
                             </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-condensed table-striped">
-                                    <thead>
-                                    <tr>
-                                        <td>#</td>
-                                        <td>Video</td>
-                                        <td class="text-center">Score</td>
-                                        <td class="text-center">Errors</td>
-                                        <td class="text-center">Date</td>
-                                        <td class="text-center">Pay</td>
-                                        <td class="text-center">Options</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php
-                                        if($needs_paid) {
-                                            $count = 0;
-                                            foreach($needs_paid as $pay) {
-                                                $count++;
-                                                echo '<tr>';
-                                                    echo '<td'.$count.'.)</td>';
-                                                    echo '<td>';
-                                                        echo '<a href="'.base_url('admin/uploads/view/'.$pay->id).'"><img
-                                                                src="'.base_url($pay->thumb).'"
-                                                                class="img-center img-responsive pull-left view-video" data-video="'.base_url($pay->path).'" data-title="'.$pay->client_name.'" width="60" height="40"></a>';
-                                                    echo '</td>';
-                                                    echo '<td class="text-center">49</td>';
-                                                    echo '<td class="text-center">4</td>';
-                                                    echo '<td class="text-center">05/12/2016</td>';
-                                                    echo '<td class="text-center"><input type="checkbox" name="video_id[]" value="'.$pay->id.'" class="pay-me"></td>';
-                                                    echo '<td class="text-center">';
-                                                        echo '<a href="'.base_url('admin/uploads/view/'.$pay->id).'" target="_blank" class="btn btn-primary btn-sm noSubmit" data-toggle="tooltip" title="View Video"><i class="fa fa-eye"></i></a>';
-                                                        echo '<a href="'.base_url('/user/scorecard/view/'.$pay->id).'" target="_blank" class="btn btn-primary btn-sm noSubmit"><i class="fa fa-clipboard" data-toggle="tooltip" title="View Scorecard"></i></a>';
-                                                       // echo '<button class="btn btn-primary btn-sm noSubmit"><i class="fa fa-trophy"></i></button>';
-                                                    echo '</td>';
-                                                echo '</tr>';
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-striped">
+                                        <thead>
+                                        <tr>
+                                            <td>#</td>
+                                            <td>Video</td>
+                                            <td class="text-center">Score</td>
+                                            <td class="text-center">Errors</td>
+                                            <td class="text-center">Date</td>
+                                            <td class="text-center">Pay</td>
+                                            <td class="text-center">Options</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                            if($needs_paid) {
+                                                $count = 0;
+                                                foreach($needs_paid as $pay) {
+                                                    $count++;
+                                                    echo '<tr>';
+                                                        echo '<td>'.$count.'.)</td>';
+                                                        echo '<td>';
+                                                            echo '<a href="'.base_url('admin/uploads/view/'.$pay->id).'"><img
+                                                                    src="'.base_url($pay->thumb).'"
+                                                                    class="img-center img-responsive pull-left view-video" data-video="'.base_url($pay->path).'" data-title="'.$pay->client_name.'" width="60" height="40"></a>';
+                                                        echo '</td>';
+                                                        echo '<td class="text-center">49</td>';
+                                                        echo '<td class="text-center">4</td>';
+                                                        echo '<td class="text-center">05/12/2016</td>';
+                                                        echo '<td class="text-center"><input type="checkbox" name="video_id[]" value="'.$pay->id.'" class="pay-me"></td>';
+                                                        echo '<td class="text-center">';
+                                                            echo '<a href="'.base_url('admin/uploads/view/'.$pay->id).'" target="_blank" class="btn btn-primary btn-sm" data-toggle="tooltip" title="View Video"><i class="fa fa-eye"></i></a>';
+                                                            echo '<a href="'.base_url('/user/scorecard/view/'.$pay->id).'" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-clipboard" data-toggle="tooltip" title="View Scorecard"></i></a>';
+                                                           // echo '<button class="btn btn-primary btn-sm noSubmit"><i class="fa fa-trophy"></i></button>';
+                                                        echo '</td>';
+                                                    echo '</tr>';
+                                                }
+                                            } else {
+                                                echo '<tr><td colspan="7"><br><div class="alert alert-info">No Payments needed for this user at this time!</div></td></tr>';
                                             }
-                                        } else {
-                                            echo '<tr><td colspan="7"><br><div class="alert alert-info">No Payments needed for this user at this time!</div></td></tr>';
-                                        }
-                                    ?>
-                                    </tbody>
-                                    <?php if($needs_paid) { ?>
-                                        <tfoot>
-                                            <tr>
-                                                <td id="paidPer" data-amount="<?php echo $paid_per->value; ?>" colspan="5"><b>Paid Per Video:</b> $<?php echo $paid_per->value; ?></td>
-                                                <td class="text-center"><a href="#" class="btn btn-primary btn-sm noSubmit" id="mark-all">Mark All</a></td>
-                                                <td id="total">
+                                        ?>
+                                        </tbody>
+                                        <?php if($needs_paid) { ?>
+                                            <tfoot>
+                                                <tr>
+                                                    <td id="paidPer" data-amount="<?php echo $paid_per->value; ?>" colspan="4"><b>Paid Per Video:</b> $<?php echo $paid_per->value; ?></td>
+                                                    <td class="text-center"><a href="#" class="btn btn-primary btn-sm noSubmit" id="mark-all">Mark All</a></td>
+                                                    <td colspan="2" id="total">
 
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
 
-                                        </tfoot>
-                                    <?php } ?>
-                                </table>
-                                <input type="hidden" id="totalInput" name="total" required>
-                                <input type="hidden" name="per_video" value="<?php echo $paid_per->value; ?>" required>
-                                <input type="hidden" name="coach_id" value="<?php echo $coach->id; ?>" required>
+                                            </tfoot>
+                                        <?php } ?>
+                                    </table>
+                                    <input type="hidden" id="totalInput" name="total" required>
+                                    <input type="hidden" name="per_video" value="<?php echo $paid_per->value; ?>" required>
+                                    <input type="hidden" name="coach_id" value="<?php echo $coach->id; ?>" required>
+                                </div>
                             </div>
                         </div>
+
+                        <?php if($needs_paid) { ?>
+                            <button id="finalize" class="btn btn-primary noSubmit" disabled>Finalize Payment</button>
+                        <?php } ?>
                     </div>
-                    <?php if($needs_paid) { ?>
-                        <button id="finalize" class="btn btn-primary noSubmit" disabled>Finalize Payment</button>
-                    <?php } ?>
                 </div>
                 <div class="col-md-3 text-center">
-                    <img
-                        src="<?php echo base_url($coach->user_image); ?>"
-                        class="img-center img-responsive">
-                    <h4><?php echo $coach->first_name.' '.$coach->last_name; ?></h4>
+                    <div class="well well-sm">
+                        <img
+                            src="<?php echo base_url($coach->user_image); ?>"
+                            class="img-center img-responsive">
+                        <h4><?php echo $coach->first_name.' '.$coach->last_name; ?></h4>
 
-                    <?php if($coach->phone) { ?>
-                        <h5><?php echo "(".substr($coach->phone, 0, 3).") ".substr($coach->phone, 3, 3)."-".substr($coach->phone,6); ?></h5>
-                    <?php } ?>
+                        <?php if($coach->phone) { ?>
+                            <h5><?php echo "(".substr($coach->phone, 0, 3).") ".substr($coach->phone, 3, 3)."-".substr($coach->phone,6); ?></h5>
+                        <?php } ?>
 
-                    <p><?php echo $coach->email; ?></p>
-                    <a href="<?php echo base_url('/profile/user/'.$coach->profile_name); ?>" target="_blank" class="btn btn-info">View Profile</a>
+                        <p><?php echo $coach->email; ?></p>
+                        <a href="<?php echo base_url('/profile/user/'.$coach->profile_name); ?>" target="_blank" class="btn btn-info">View Profile</a>
+                    </div>
                 </div>
             </div>
         </div>

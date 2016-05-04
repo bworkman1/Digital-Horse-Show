@@ -42,7 +42,6 @@ class Payments extends CI_Model
         if($this->db->insert_id()>0) {
             $this->updateVideoPaymentId($data['video_id'], $this->db->insert_id());
             $this->notifiyCoachOfPayment($data);
-
             $this->session->set_flashdata('success', 'Payment saved successfully');
             return array('success'=>base_url('admin/view/all-payments'));
         } else {
