@@ -28,5 +28,6 @@ application/models/index.html
 application/third_party/
 application/views/index.html
 application/views/welcome_message.php
+uploads/
 index.php
 license.txt

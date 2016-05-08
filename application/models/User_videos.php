@@ -141,10 +141,13 @@ class User_videos extends CI_Model
             $this->db->limit($limit);
         }
         if($viewed) {
-            $this->db->where('user_viewed', NULL);
+            $this->db->where('video_uploads.user_viewed', NULL);
         }
-        $this->db->where('score >', '0');
-        $result = $this->db->get_where('video_uploads', array('user_id'=>$user_id));
+        $this->db->select('video_uploads.id AS video_id, users.first_name, users.last_name, video_uploads.scorecard_id, score_cards.max_score, video_uploads.score, video_uploads.client_name, video_uploads.uploaded, score_cards.option_name');
+        $this->db->join('score_cards', 'score_cards.id = video_uploads.scorecard_id');
+        $this->db->join('users', 'video_uploads.coach_id = users.id');
+        $this->db->where('video_uploads.score >', '0');
+        $result = $this->db->get_where('video_uploads', array('video_uploads.user_id'=>$user_id));
 
         return $result->result();
 

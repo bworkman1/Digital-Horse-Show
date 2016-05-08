@@ -134,7 +134,7 @@ class Uploads extends CI_Model
             return $data;
         }
     }
-
+    
     private function createVideoThumb($data)
     {
         //NEED TO FIGURE OUT A WAY TO CREATE THUMBNAIL

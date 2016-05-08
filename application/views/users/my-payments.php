@@ -6,7 +6,6 @@
                 <td>Trans Id</td>
                 <td>Date</td>
                 <td>Amount</td>
-                <td>Coach</td>
                 <td class="text-center">Credits</td>
             </tr>
         </thead>
@@ -21,7 +20,6 @@
                         echo '<td>'.$payment->trans_id.'</td>';
                         echo '<td>'.date('m-d-Y', strtotime($payment->paid_on)).'</td>';
                         echo '<td>$'.number_format($payment->amount, 2).'</td>';
-                        echo '<td>'.$payment->first_name.' '.$payment->last_name.'</td>';
                         echo '<td class="text-center">'.$payment->credits.'</td>';
                     echo '</tr>';
 
@@ -34,7 +32,6 @@
             <tr>
                 <td colspan="2" class="text-right"><b>Total:</b></td>
                 <td><?php echo '$'. number_format($footer_totals['amount'], 2); ?></td>
-                <td></td>
                 <td class="text-center"><b>Total:</b> <?php echo $footer_totals['credits']; ?></td>
             </tr>
         </tfooter>

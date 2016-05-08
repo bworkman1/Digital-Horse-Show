@@ -18,7 +18,7 @@ class My_scores extends CI_Controller {
         $this->load->model('user_videos');
         $data['page_name'] = 'my-scores';
         $data['videos'] = $this->user_videos->getGradedVideos($this->session->userdata('user_id'));
-        $this->load->view('users/my-videos', $data);
+        $this->load->view('users/my-scores', $data);
     }
 
 

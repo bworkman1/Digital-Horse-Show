@@ -98,7 +98,6 @@ class Process_payment extends CI_Model
     public function getUsersPayments($id)
     {
         $this->db->order_by('payments.id', 'desc');
-        $this->db->join('users', 'payments.coach_id = users.id');
         $result = $this->db->get_where('payments', array('payments.user_id' => $id));
         return $result->result();
     }
