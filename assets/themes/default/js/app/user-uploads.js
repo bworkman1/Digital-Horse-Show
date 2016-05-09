@@ -34,7 +34,7 @@ $(function() {
         alert('Uploads are not supported in your browser, please upgrade your browser to upload videos');
     }
 
-    $('#upload-form').submit(function(event) {
+    $('#upload-formsers').submit(function(event) {
         event.preventDefault();
 
         var location = $('input[name="location"]').val();
@@ -117,6 +117,56 @@ $(function() {
     function _(el){
         return document.getElementById(el);
     }
+
+    $('#submit').click(function (e) {
+        e.preventDefault();
+    });
+
+    $('#file').change(function() {
+        chooseFile = document.getElementById('file');
+        var self =
+            blob = chooseFile.files[0],
+            BYTES_PER_CHUNK, SIZE, NUM_CHUNKS, start, end;
+
+            BYTES_PER_CHUNK = 1000000;
+            SIZE = blob.size;
+            NUM_CHUNKS = Math.max(Math.ceil(SIZE / BYTES_PER_CHUNK), 1);
+            $('#chunks').val(NUM_CHUNKS);
+    });
+
+    var chunky = 0;
+    $('#file').fileupload({
+        dataType: 'json',
+        maxChunkSize: 1000000,
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            console.log(progress);
+            $('.progress-bar').css(
+                'width',
+                progress + '%'
+            ).html(progress+'%');
+            $('#chunk').val(chunky);
+            chunky++;
+
+            console.log(chunky);
+        },
+        add: function (e, data) {
+            console.log(data);
+            $('#submit').click(function () {
+                e.preventDefault();
+                $('.progress').removeClass('hide');
+                data.submit();
+            });
+        },
+        done: function (e, data) {
+            alertify.success('Coach Selected');
+            //data.context.text('Upload finished.');
+            $('.progress-bar').css(
+                'width',
+                '0%'
+            ).html('0%');
+        },
+    });
 
 });
 

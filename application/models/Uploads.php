@@ -134,13 +134,13 @@ class Uploads extends CI_Model
             return $data;
         }
     }
-    
+
     private function createVideoThumb($data)
     {
         //NEED TO FIGURE OUT A WAY TO CREATE THUMBNAIL
     }
 
-    private function set_image_path()
+    public function set_image_path()
     {
         /*
             All images will be stored in user-files according to id and type, then encrypted to hide file names. This should create a unique folder just for that user that will then be able to see all the files they have uploaded later.

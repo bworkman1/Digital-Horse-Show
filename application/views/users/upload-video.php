@@ -111,6 +111,8 @@
 
                 <input type="hidden" id="locLat" name="lat">
                 <input type="hidden" id="locLng" name="lng">
+                <input type="hidden" id="chunks" name="chunks" value="true">
+                <input type="hidden" id="chunk" name="chunk" value="0">
                 <br>
                 <button type="submit" id="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Start Upload</button>
 
