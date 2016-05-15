@@ -16,7 +16,7 @@ class Scorecard extends CI_Controller
         $this->load->js('assets/themes/default/js/app/score-card.js');
         $this->load->js('assets/themes/default/js/jquery-scrolltofixed-min.js');
 
-        if (!$this->ion_auth->in_group('coach')) {
+       if (!$this->ion_auth->in_group('coach') && !$this->ion_auth->in_group('admin')) {
             redirect('user/dashboard');
             exit;
         }
@@ -83,7 +83,8 @@ class Scorecard extends CI_Controller
     {
         $this->output->set_template('full-screen');
         $id = (int)$this->uri->segment(4);
-        if($this->ion_auth->in_group('coach') && !empty($id)) {
+
+        if(!empty($id)) {
             $this->load->model('user_videos');
             $this->load->model('Coach/Grades');
             $this->load->model('Profile');
@@ -115,7 +116,7 @@ class Scorecard extends CI_Controller
             $this->load->model('coach/grades');
 
             $id = (int)$this->uri->segment(4);
-            if($this->ion_auth->in_group('coach') && !empty($id)) {
+            if(($this->ion_auth->in_group('coach') || $this->ion_auth->in_group('admin')) && !empty($id)) {
                 $field = '';
                 $error = false;
                 foreach($_POST as $key => $val) {

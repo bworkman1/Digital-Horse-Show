@@ -47,7 +47,7 @@ class UploadHandler extends CI_Model
         $this->options = array(
             'script_url' => $this->get_full_url().'/'.$this->basename($this->get_server_var('SCRIPT_NAME')),
             'upload_dir' =>  $this->Uploads->mUploadPath.'/',
-            'upload_url' => $this->get_full_url().'/files/',
+            'upload_url' => base_url($this->Uploads->mUploadPath.'/'),
             'input_stream' => 'php://input',
             'user_dirs' => false,
             'mkdir_mode' => 0755,
@@ -174,6 +174,14 @@ class UploadHandler extends CI_Model
     }
 
     protected function initialize() {
+        $allowed =  array('mpeg', 'mpg', 'mp4', 'mpe', 'qt', 'mov', 'avi');
+        $filename = $_FILES['file']['name'];
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        if(!in_array($ext,$allowed) ) {
+            echo json_encode(['error' => 'Invalid file type']);
+            exit;
+        }
+
         switch ($this->get_server_var('REQUEST_METHOD')) {
             case 'OPTIONS':
             case 'HEAD':
@@ -1359,7 +1367,14 @@ class UploadHandler extends CI_Model
                 );
             }
         }
+
         $response = array($this->options['param_name'] => $files);
+        $response['data'] = array(
+            'dir' => $this->options['upload_dir'],
+            'full' => $this->options['upload_dir'].'/'.$upload['name'],
+            'size' => filesize($this->options['upload_dir'].'/'.$upload['name']),
+        );
+
         return $this->generate_response($response, $print_response);
     }
 
@@ -1377,7 +1392,7 @@ class UploadHandler extends CI_Model
                     if (!empty($version)) {
                         $file = $this->get_upload_path($file_name, $version);
                         if (is_file($file)) {
-                            unlink($file);
+                            //unlink($file);
                         }
                     }
                 }

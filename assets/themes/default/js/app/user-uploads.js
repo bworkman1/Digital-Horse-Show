@@ -29,95 +29,6 @@ $(function() {
         ]);
     });
 
-    if (!("FormData" in window)) {
-        // FormData is not supported; degrade gracefully/ alert the user as appropiate
-        alert('Uploads are not supported in your browser, please upgrade your browser to upload videos');
-    }
-
-    $('#upload-formsers').submit(function(event) {
-        event.preventDefault();
-
-        var location = $('input[name="location"]').val();
-        var lng = $('input[name="lng"]').val();
-        var lat = $('input[name="lat"]').val();
-        var name = $('input[name="name"]').val();
-        var card_id = '';
-        $('.scoring-type').each(function()  {
-           if(!$(this).hasClass('hide')) {
-               card_id = $(this).find('select').val();
-           }
-        });
-
-        var coach = $('select[name="coach"]').val();
-        var file = _("file").files[0];
-
-        var formData = new FormData();
-        formData.append("file", file);
-        formData.append("location", location);
-        formData.append("lng", lng);
-        formData.append("lat", lat);
-        formData.append("name", name);
-        formData.append("coach", coach);
-        formData.append("card_id", card_id);
-
-        var url = $('#upload-form').prop('action');
-
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            cache: false,
-            dataType: 'json',
-            processData:false,
-            xhr: function() {
-                var xhr = $.ajaxSettings.xhr();
-                if (xhr.upload) {
-                    xhr.upload.addEventListener('progress', function(evt) {
-                        var percent = (evt.loaded / evt.total) * 100;
-                        $(".progress-bar").width(percent + "%");
-                    }, false);
-                }
-                return xhr;
-            },
-            success: function(data) {
-                if(typeof data.success != 'undefined') {
-                    window.location.href = $('#baseUrl').data('base') + "user/my-uploads";
-                } else {
-                    console.log('show error');
-                    $(".progress-bar").width("0%");
-                    $('#feedback').html('<div class="alert alert-danger"> '+data.error+'</div>');
-                }
-            },
-            error: function(xhr, a, b) {
-                console.log(xhr);
-                console.log(a);
-                console.log(b);
-                $("#feedback").html('<div class="alert alert-danger">' +
-                    '<i class="fa fa-exclamation-triangle"></i> Upload failed, try refreshing the page and trying again!</div>');
-            },
-            beforeSend: function() {
-                $("#feedback").html('');
-                $(".progress-bar").width("0%");
-                $('#submit').html('<i class="fa fa-spinner fa-spin"></i> Uploading Video').attr('disabled', true);
-                $('input[name="file"]').attr('disabled', true);
-                $('#upload-heading').after('<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Warning: Your file is uploading, please dont leave this page</div>');
-                $('.progress').removeClass('hide');
-            },
-            complete: function() {
-                //$('.progress').addClass('hide');
-                $('#submit').html('Submit').attr('disabled', false);
-                $('input[name="file"]').attr('disabled', false);
-                $('.alert-warning').remove();
-
-            },
-        });
-    });
-
-    function _(el){
-        return document.getElementById(el);
-    }
-
     $('#submit').click(function (e) {
         e.preventDefault();
     });
@@ -138,35 +49,45 @@ $(function() {
     $('#file').fileupload({
         dataType: 'json',
         maxChunkSize: 1000000,
+        replaceFileInput: false,
         progressall: function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
-            console.log(progress);
             $('.progress-bar').css(
                 'width',
                 progress + '%'
-            ).html(progress+'%');
+            ).html(progress + '%');
             $('#chunk').val(chunky);
             chunky++;
-
-            console.log(chunky);
         },
         add: function (e, data) {
-            console.log(data);
+            console.log('Add');
             $('#submit').click(function () {
                 e.preventDefault();
+
                 $('.progress').removeClass('hide');
+                $('button[type="submit"]').prop('disabled', true);
+                $('#disclamier').html('<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Upload may take a while to upload, please don\'t leave this page until the upload has completed.</div>');
                 data.submit();
+
+                if(data.result) {
+
+                }
             });
         },
         done: function (e, data) {
+            $('#disclamier').html('');
+            $('button[type="submit"]').prop('disabled', false);
             alertify.success('Coach Selected');
-            //data.context.text('Upload finished.');
             $('.progress-bar').css(
                 'width',
                 '0%'
             ).html('0%');
         },
     });
+
+    function isValidForm() {
+        return true;
+    }
 
 });
 

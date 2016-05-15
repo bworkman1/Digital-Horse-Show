@@ -1,5 +1,16 @@
 
 <div class="well well-sm wow fadeInUp">
+    <?php
+        if($type=='coach') {
+            echo '<h4 class="border-bottom" style="margin:0 0 10px 0"><i class="fa fa-user"></i> Coach</h4>';
+        } elseif($type=='user') {
+            if($this->session->userdata('user_id') == $profile->id) {
+                echo '<h4 class="border-bottom" style="margin:0 0 10px 0"><i class="fa fa-user"></i> My Profile</h4>';
+            } else {
+                echo '<h4 class="border-bottom" style="margin:0 0 10px 0"><i class="fa fa-user"></i> User</h4>';
+            }
+        }
+    ?>
     <div class="row">
         <div class="col-sm-3">
             <img src="<?php echo base_url($profile->user_image); ?>" class="img-responsive img-center">

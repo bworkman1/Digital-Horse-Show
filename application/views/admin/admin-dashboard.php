@@ -4,7 +4,7 @@
         <div class="alert alert-primary dashboard-card">
             <a href="<?php echo base_url('admin/users'); ?>" class="pull-left icon-link"><i class="fa fa-users pull-left fa-4x"></i></a>
             <h5><b><?php echo $new_users; ?></b></h5>
-            <p>New Users <small>(30 Days)</small></p>
+            <p>Users <small class="muted">(30 Days)</small></p>
             <a href="<?php echo base_url('admin/users'); ?>" class="view">View</a>
         </div>
     </div>
@@ -20,8 +20,8 @@
         <div class="alert alert-info dashboard-card">
             <a href="#" class="pull-left icon-link"><i class="fa fa-gavel pull-left fa-4x"></i></a>
             <h5><b><?php echo $coaches; ?></b></h5>
-            <p>New Judges <small>(30 Days)</small></p>
-            <a href="#" class="view">View</a>
+            <p>Coaches <small>(30 Days)</small></p>
+            <a href="<?php echo base_url('user/coaches'); ?>" class="view">View</a>
         </div>
     </div>
     <div class="col-md-3 col-xs 6">

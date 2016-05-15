@@ -34,6 +34,16 @@ class Coach_data extends CI_Model
         return $this->ion_auth->users(3)->result();
     }
 
+    public function waitingBeScored($id)
+    {
+        $this->db->select('users.first_name, users.last_name, video_uploads.client_name, video_uploads.uploaded, video_uploads.coach_id, video_uploads.id, users.profile_name');
+        $this->db->join('users', 'users.id = video_uploads.user_id');
+        $this->db->where('score', 0);
+        $this->db->or_where('score', NULL);
+        $result = $this->db->get_where('video_uploads', array('coach_id'=>$id));
+        return $result->result();
+    }
+
     private function countCoachSurveys($coach_id)
     {
         $result = $this->db->get_where('surveys', array('coach_id' => $coach_id));

@@ -1,8 +1,6 @@
 </div>
+<h5 class="page-title"><i class="fa fa-money"></i> Needs Paid</h5>
 
-<div class="page-title">
-    <h5><i class="fa fa-payments"></i> Needs Paid</h5>
-</div>
     <form id="makePayment" data-url="<?php echo base_url('admin/view/post-payment'); ?>">
     <div class="container">
 

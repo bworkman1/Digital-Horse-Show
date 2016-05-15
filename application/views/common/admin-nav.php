@@ -17,22 +17,10 @@
                 <li id="nav-dashboard"><a href="<?php echo base_url('admin/scorecards'); ?>">Score Cards</a></li>
 
                 <li id="nav-coaches"><a href="<?php echo base_url('user/coaches'); ?>">Coaches</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url('admin/users'); ?>"><i class="fa fa-users fa-fw"></i> Users</a></li>
-                        <li><a href="<?php echo base_url('user/my-profile/edit'); ?>"><i class="fa fa-bullhorn fa-fw"></i> Coaches</a></li>
-                    </ul>
+                <li class="nav-users">
+                    <a href="<?php echo base_url('admin/users'); ?>" role="button" aria-haspopup="true" aria-expanded="false">All Users </a>
                 </li>
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Payments <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url('admin/users'); ?>"><i class="fa fa-users fa-fw"></i> Users</a></li>
-                        <li><a href="<?php echo base_url('user/my-profile/edit'); ?>"><i class="fa fa-bullhorn fa-fw"></i> Coaches</a></li>
-                        <li><a href="<?php echo base_url('user/logout'); ?>"><i class="fa fa-shopping-cart fa-fw"></i> Products</a></li>
-                    </ul>
-                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">

@@ -59,8 +59,8 @@ class Widgets extends CI_Model
         $labels = array();
 
         foreach($result->result() as $row) {
-            $labels[] = date('M', strtotime($row->Month));
-            $data[] = number_format($row->Amount, 2);
+            $labels[] = date('M', strtotime($row->Month)).' $';
+            $data[] = number_format($row->Amount, 2, '.', '');
         }
 
         $datasets[] = array(

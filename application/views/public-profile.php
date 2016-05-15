@@ -17,8 +17,6 @@
                 }
                 ?>
             </div>
-
-            <?php $this->load->view('ui-elements/carousel-widget', $carousel); ?>
         </div>
         <div class="col-lg-9 col-md-8">
             <div class="well well-sm">
@@ -42,25 +40,20 @@
                     ?>
                 </div>
             </div>
-            <div class="well well-sm awards">
-                <h4 class="border-bottom"><i class="fa fa-trophy"></i> Awards</h4>
-                <?php
-                    $award = array(
-                        'assets/themes/default/images/awards/control.png',
-                        'assets/themes/default/images/awards/Showmanship.png'
-                    );
-
-                    for($i=0;$i<20;$i++) {
-                        $num = rand(0, 1);
-                        echo '<img src="'.base_url($award[$num]).'" data-toggle="tooltip" data-placement="top" alt="Award Name" title="Award Name" width="76" height="76">';
-                    }
-
-                ?>
-            </div>
         </div>
     </div>
 
-
-
-
+    <?php
+        $data = [
+            'waiting' => 15,
+            'last_login' => date('m-d-Y', $user->last_login),
+        ];
+        if($this->ion_auth->in_group('coach', $user->id)) {
+            $this->load->view('ui-elements/coach-stats', $data);
+        } else {
+            $data['score'] = '155/160';
+            $data['uploaded'] = '40';
+            $this->load->view('ui-elements/user-stats', $data);
+        }
+    ?>
 <div id="menu-page" data-page="<?php echo $page_name; ?>"></div>

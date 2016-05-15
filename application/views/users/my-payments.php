@@ -1,6 +1,9 @@
+</div>
+<h5 class="page-title"><i class="fa fa-clock-o"></i> My Purchase History</h5>
+<div class="container">
+
 <div class="well well-sm">
-    <h4 class="border-bottom"><i class="fa fa-clock-o"></i> My Purchase History</h4>
-    <table class="table table-striped table-condensed">
+    <table class="table table-striped table-hover table-condensed">
         <thead style="font-weight: bold">
             <tr>
                 <td>Trans Id</td>

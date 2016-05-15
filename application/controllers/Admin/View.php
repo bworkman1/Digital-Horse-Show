@@ -94,6 +94,18 @@ class View extends CI_Controller
         $this->load->view('admin/coach-payments', $data);
     }
 
+    public function waiting_to_be_scored()
+    {
+        $id = (int)$this->uri->segment(4);
+        $this->load->js('assets/themes/default/js/app/common.js');
+        $this->output->set_common_meta('Waiting To Be Scored', 'Digital Horse Show Waiting To Be Scored', '');
+
+        $this->load->model('Admin/Coach_data');
+        $data['waiting'] = $this->Coach_data->waitingBeScored($id);
+
+        $this->load->view('admin/waiting-to-be-scored', $data);
+    }
+
     /* Ajax Call  */
     public function post_payment()
     {

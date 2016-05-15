@@ -5,6 +5,7 @@ $(function() {
         url: $('#graph-chart').data('graphurl'),
         dataType: 'json',
         success: function(data) {
+            console.log(data);
             var myLineChart = new Chart(ctx).Line(data);
         },
         error: function(xhr) {

@@ -13,10 +13,10 @@
 <div class="container">
     <div class="well well-sm">
         <div class="table-responsive">
-            <table class="table table-striped table-condensed">
+            <table class="table table-striped table-hover table-condensed">
                 <thead style="font-weight: bold">
                 <tr>
-                    <td>#</td>
+                    <td class="text-right">#</td class="text-right">
                     <td>Name</td>
                     <td>Score Type</td>
                     <td>Submitted</td>
@@ -35,15 +35,15 @@
                 foreach($videos as $scored) {
                     $count++;
                     echo '<tr>';
-                    echo '<td>'.$count.')</td>';
+                    echo '<td class="text-right">'.$count.')</td>';
                     echo '<td>'.$scored->client_name.'</td>';
                     echo '<td>'.$scored->option_name.'</td>';
                     echo '<td>'.date('m-d-Y', strtotime($scored->uploaded)).'</td>';
                     echo '<td>'.$scored->first_name.' '.$scored->last_name.'</td>';
                     echo '<td class="text-center">'.$scored->score.'/'.$scored->max_score.'</td>';
                     echo '<td class="text-center">';
-                    echo '<a href="'.base_url('user/my-uploads/view/'.$scored->video_id).'" data-toggle="tooltip" title="View Scorecard" class="btn btn-sm btn-primary"><i class="fa fa-youtube-play"></i></a>';
-                    echo '<a href="'.base_url('/user/scorecard/view/'.$scored->video_id).'" class="btn btn-sm btn-info" data-toggle="tooltip" title="View Video" style="margin-left:4px;"><i class="fa fa-list-alt"></i></a>';
+                    echo '<a href="'.base_url('user/my-uploads/view/'.$scored->video_id).'" data-toggle="tooltip" title="View Video" class="btn btn-sm btn-primary"><i class="fa fa-youtube-play"></i></a>';
+                    echo '<a href="'.base_url('/user/scorecard/view/'.$scored->video_id).'" class="btn btn-sm btn-info" data-toggle="tooltip" title="View Scorecard" style="margin-left:4px;"><i class="fa fa-list-alt"></i></a>';
                     echo '</td>';
                     echo '</tr>';
 

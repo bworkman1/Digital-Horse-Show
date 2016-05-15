@@ -1,7 +1,5 @@
 </div>
-<div class="page-title container-fluid">
-    <h5><i class="fa fa-video-camera"></i> Upload Video File</h5>
-</div>
+<h5 class="page-title"><i class="fa fa-video-camera"></i> Upload Video File</h5>
 <div class="container">
 <?php if($user->coaching_credits>0) { ?>
     <?php echo form_open_multipart('user/upload-video/upload', array('id' => 'upload-form')); ?>

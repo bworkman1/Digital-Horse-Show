@@ -40,7 +40,7 @@
                                 echo '<td>' . $count . '.</td>';
                                 echo '<td>' . $row->client_name . '</td>';
                                 echo '<td class="text-center">' . $row->score . '</td>';
-                                echo '<td class="text-right"><a href="' . base_url('user/scorecard/view/' . $row->id) . '" class="btn btn-primary btn-sm">View</a></td>';
+                                echo '<td class="text-right"><a href="' . base_url('user/scorecard/view/' . $row->video_id) . '" class="btn btn-primary btn-sm">View</a></td>';
                                 echo '</tr>';
                             }
                         } else {
@@ -50,6 +50,11 @@
 
                     </tbody>
                 </table>
+                <?php
+                    if($recent_scores) {
+                        echo '<a href="'.base_url('user/my-scores').'" class="btn btn-primary">View All</a>';
+                    }
+                ?>
             </div>
         </div>
 

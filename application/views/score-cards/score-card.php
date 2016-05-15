@@ -101,7 +101,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td colspan="5" id="ajax-feedback"></td>
+                                <td colspan="5" id="ajax-feedback"><b>Max Score:  <?php echo $scorecard['scorecard']->max_score; ?></b></td>
                                 <td class="text-right"><b>Total:</b></td>
                                 <td><input type="text" class="form-control grandTotal" readonly></td>
                                 <td></td>
@@ -109,6 +109,7 @@
                         </tfoot>
 
                     </table>
+
             </div>
                 <div id="max-score" data-max="<?php echo $scorecard['scorecard']->max_score; ?>"></div>
                 <input type="hidden" id="totalScore" name="total" maxlength="3" required>

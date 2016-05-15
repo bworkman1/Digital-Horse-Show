@@ -33,10 +33,6 @@
                     </ul>
                 </li>
 
-                <li id="nav-packages"><a href="<?php echo base_url('user/packages'); ?>">Packages</a></li>
-                <li id="nav-rules"><a href="<?php echo base_url('user/rules-and-patterns'); ?>">Rules &amp; Patterns</a></li>
-
-
             </ul>
 
             <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">

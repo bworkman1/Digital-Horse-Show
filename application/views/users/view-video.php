@@ -44,22 +44,22 @@
         <?php $this->load->view('ui-elements/video-details-card', $video); ?>
     </div>
 </div>
-<?php
-    if($this->session->userdata('user_id') != $video->user_id) {
-        $this->load->view('ui-elements/video-options', $video);
-    }
-?>
+
 
 <div class="row">
     <div class="col-md-6">
-
-        <?php $this->load->view('ui-elements/user-profile-card'); ?>
-
-
+        <?php
+            $data['profile'] = $coach;
+            $data['type'] = 'coach';
+            $this->load->view('ui-elements/user-profile-card', $data);
+        ?>
     </div>
     <div class="col-md-6">
-
-
+        <?php
+            $data['profile'] = $user;
+            $data['type'] = 'user';
+            $this->load->view('ui-elements/user-profile-card', $data);
+        ?>
     </div>
 </div>
 

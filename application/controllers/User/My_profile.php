@@ -26,7 +26,7 @@ class My_profile extends CI_Controller
         $data['videos'] = $this->User_videos->getUsersVideos($this->session->userdata('user_id'));
         $data['page_name'] = 'my-profile';
 
-        $this->load->view('users/my-profile', $data);
+        $this->load->view('public-profile', $data);
     }
 
     public function edit()

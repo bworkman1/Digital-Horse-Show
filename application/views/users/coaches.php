@@ -46,9 +46,6 @@
                         echo '</div>';
                     echo '</div>';
                     echo '<hr style="margin: 8px">';
-            $val->payments = rand(1, 30);
-            $val->surveys = rand(1, 30);
-            $val->waiting = rand(1, 30);
                     $data = array(
                         'url' => $link,
                         'id' => $val->id,

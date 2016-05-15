@@ -77,10 +77,11 @@ class My_uploads extends CI_Controller
             $data['video'] = $this->User_videos->getVideo($id);
             if(!empty($data['video'])) {
                 $data['related'] = $this->User_videos->getRelatedVideos($id, $data['video']->user_id);
-                $data['user'] = $this->ion_auth->user()->row($data['video']->user_id);
+
+                $data['user'] = $this->ion_auth->user($data['video']->user_id)->row();
                 $data['page_name'] = 'view-videos';
                 $data['score'] = $this->User_videos->getRelatedScores($id);
-                $data['coach'] = $this->ion_auth->user()->row($data['video']->coach_id);
+                $data['coach'] = $this->ion_auth->user($data['video']->coach_id)->row();
                 $data['next'] = $this->User_videos->getNextVideo($id);
                 $data['prev'] = $this->User_videos->getPreviousVideo($id);
 

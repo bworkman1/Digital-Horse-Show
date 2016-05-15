@@ -1,12 +1,10 @@
 </div>
-<div class="page-title">
-    <h4>All Coach Payments</h4>
-</div>
+<h5 class="page-title"><i class="fa fa-money"></i> All Coach Payments</h5>
 
 <div class="container">
        <div class="well well-sm">
            <div class="table-responsive">
-               <table class="table table-striped">
+               <table class="table table-striped table-hover">
                    <thead>
                         <tr>
                             <td>#</td>
@@ -61,7 +59,7 @@
                                     $total[] = $payment->amount;
                                }
                            } else {
-                               echo '<tr><td><br><div class="alert alert-info">This coach has not been paid yet.</div></td></tr>';
+                               echo '<tr><td colspan="7"><br><div class="alert alert-info">This coach has not been paid yet.</div></td></tr>';
                            }
                        ?>
                    </tbody>

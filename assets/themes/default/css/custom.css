@@ -48,7 +48,7 @@ img.img-circle {
 	padding: 7.5px 15px;
 	background: #fff;
 }
-.navbar-default .navbar-brand:hover {
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:active {
 	background: #fff;
 }
 .navbar-right .profile {
@@ -57,7 +57,9 @@ img.img-circle {
 .navbar-right a:hover, .navbar-right>.open>a {
 	background: none !important;
 }
-
+.btn-group .dropdown-menu>li>a {
+	padding: 3px 10px;
+}
 @media(min-width: 768px) {
 	.dropdown-menu>li>a:hover, .dropdown-menu>.active>a {
 		background-color: #002447 !important;
@@ -326,9 +328,23 @@ a.btn-default {
 	color: #ffffff !important;
 	font-weight: bold;
 }
+.progress {
+	height: 20px;
+	font-size: 1.2em;
+}
 .fv-form-bootstrap .fv-icon-no-label {
     top: 12px;
 }
+.icon-text {
+	font-weight: bold;
+}
+
+.fa.block-icon {
+	margin-right: 5px;
+	vertical-align: middle;
+	font-size: 3em;
+}
+
 .well-footer .star-rating {
     margin-top: 5px;
 }

@@ -41,7 +41,7 @@ class Dashboard extends CI_Controller
         $this->load->view('admin/admin-dashboard', $data);
     }
 
-    private function addUser()
+    public function addUser()
     {
         $username = 'benedmunds'.rand(100, 999999999);
         $password = 'password';
@@ -50,7 +50,7 @@ class Dashboard extends CI_Controller
             'first_name' => 'Ben',
             'last_name' => 'Edmunds',
         );
-        $group = array('3'); // Sets user to admin.
+        $group = array('2'); // Sets users group.
 
         $this->ion_auth->register($username, $password, $email, $additional_data, $group);
     }

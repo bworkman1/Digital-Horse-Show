@@ -15,9 +15,9 @@ class View extends CI_Controller
         $this->load->js('assets/themes/default/js/app/common.js');
         $this->load->js('assets/themes/default/js/jquery-scrolltofixed-min.js');
 
-        if (!$this->ion_auth->in_group('coach')) {
-            redirect('user/dashboard');
-            exit;
+        if (!$this->ion_auth->in_group('coach') || !$this->ion_auth->in_group('admin')) {
+            //redirect('user/dashboard');
+           // exit;
         }
         
         $this->load->model('Security');
