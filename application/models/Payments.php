@@ -26,6 +26,7 @@ class Payments extends CI_Model
 
     private function getUsersWithPayments($id)
     {
+        $this->db->order_by('coach_payments.ts', 'desc');
         $this->db->select('users.profile_name, users.first_name, users.last_name, coach_payments.coach_id, coach_payments.ts, coach_payments.amount, coach_payments.notes, coach_payments.payment_groups_id, coach_payments.address, coach_payments.city, coach_payments.state, coach_payments.zip, coach_payments.payment_per_video');
         $this->db->join('users', 'coach_payments.coach_id = users.id');
         if($id) {

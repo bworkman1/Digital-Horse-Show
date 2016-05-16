@@ -2,7 +2,7 @@
 <h5 class="page-title"><i class="fa fa-video-camera"></i> Upload Video File</h5>
 <div class="container">
 <?php if($user->coaching_credits>0) { ?>
-    <?php echo form_open_multipart('user/upload-video/upload', array('id' => 'upload-form')); ?>
+    <?php echo form_open_multipart('user/upload-video/upload', array('id' => 'upload-form', 'data-save'=>base_url('user/upload-video/saveVideoData'), 'data-redirect'=>base_url('user/my-uploads'))); ?>
     <div class="row">
         <div class="col-md-6">
             <div class="well well-sm wow fadeInUp" data-wow-delay="200ms">

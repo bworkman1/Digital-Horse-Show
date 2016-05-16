@@ -119,7 +119,7 @@
         <?php echo form_close(); ?>
     </div>
 </div>
-
+    <div id="menu-page" data-page="<?php echo 'grade'; ?>"></div>
 <div id="redirect" data-redirect="<?php echo base_url('coach/view/scorecard/'.$this->uri->segment(4)); ?>"></div>
 
 <div id="score-help" class="modal fade" role="dialog">

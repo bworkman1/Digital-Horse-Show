@@ -135,7 +135,7 @@ class Uploads extends CI_Model
         }
     }
 
-    private function createVideoThumb($data)
+    public function createVideoThumb($data)
     {
         //NEED TO FIGURE OUT A WAY TO CREATE THUMBNAIL
     }
@@ -266,20 +266,40 @@ class Uploads extends CI_Model
 
     private function getVideoThumbNail($videoPath)
     {
-        $videoPath = ltrim($videoPath, '/');
         $pathArray = explode('/', $videoPath);
         $imageFileArray = explode('.', end($pathArray));
-        $imgLocation = ltrim($this->mUploadPath, './').'/thumbs/'.$imageFileArray[0].'.jpg';
-        $path = 'C:\\MAMP\htdocs\\ffmpeg\\bin\\ffmpeg';
+        $imgLocation = ltrim($this->mUploadPath, '/').'/thumbs/'.$imageFileArray[0].'.jpg';
+
+        $path = 'C:\MAMP\htdocs\digitalhorseshow\ffmpeg\bin\ffmpeg';
         $size = '454x256';
         $getFromSecond = '5';
         $cmd = "$path -i $videoPath -an -ss $getFromSecond -s $size $imgLocation";
-        if(!shell_exec($cmd)) {
+
+        if(shell_exec($cmd)) {
             $img = $imgLocation;
         } else {
             $img = '';
         }
         return $img;
+    }
+
+    public function saveVideoData($data)
+    {
+        $user = $this->ion_auth->user()->row();
+        if($user->coaching_credits>0) {
+            $this->set_image_path();
+            $data['thumb'] = $this->getVideoThumbNail($data['path']);
+            $this->db->insert('video_uploads', $data);
+            if($this->db->insert_id()>0) {
+                $this->removeCoachingCredit();
+                $this->session->set_flashdata('success', 'Video uploaded successfully');
+                return array('success'=>'Upload Successful');
+            } else {
+                return array('error'=>'File failed to save, try again');
+            }
+        } else {
+            return array('error'=>'You don\'t have anymore coaching credits left');
+        }
     }
 
 }

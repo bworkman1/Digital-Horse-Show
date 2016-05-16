@@ -51,6 +51,15 @@ img.img-circle {
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:active {
 	background: #fff;
 }
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+	background: #9C27B0;
+	color: #ffffff;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
 .navbar-right .profile {
 	padding: 5px 0 9px 0;
 }
@@ -312,7 +321,7 @@ a.btn-default {
 .table-hover>tbody>tr:hover {
 	 background-color: #eeefef;
 }
-.table-hover>thead {
+.table-responsive .table-hover>thead {
 	background-color: rgb(52, 0, 55);
 	color: #fff;
 }

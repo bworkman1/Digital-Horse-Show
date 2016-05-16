@@ -14,6 +14,7 @@ class View extends CI_Controller
     {
         $this->output->set_template('default');
         $this->load->model('Security');
+        $this->load->js('assets/themes/default/js/app/common.js');
         if (!$this->ion_auth->in_group('admin')) {
             redirect('user/dashboard');
             exit;

@@ -1,5 +1,5 @@
 </div>
-<h5 class="page-title"><i class="fa fa-money"></i> All Coach Payments</h5>
+<h5 class="page-title"><i class="fa fa-money"></i> Payments</h5>
 
 <div class="container">
        <div class="well well-sm">
@@ -78,3 +78,5 @@
 
 
        </div>
+
+           <div id="menu-page" data-page="<?php echo 'payments'; ?>"></div>

@@ -12,7 +12,7 @@
         <div class="alert alert-warning text-center">
             <i class="fa fa-gavel fa-3x"></i>
             <h5><?php echo $waiting_score; ?> Waiting to be scored</h5>
-            <a href="<?php echo base_url('coach/score-card/needs-scored/'); ?>" class="btn btn-default">View</a>
+            <a href="<?php echo base_url('coach/scorecard/needs-scored/'); ?>" class="btn btn-default">View</a>
         </div>
     </div>
 
@@ -20,7 +20,7 @@
         <div class="alert alert-success text-center">
             <i class="fa fa-money fa-3x"></i>
             <h5>$<?php echo $money_made; ?> Made so far</h5>
-            <a href="<?php echo base_url('coach/score-card/needs-scored/'); ?>" class="btn btn-default">View</a>
+            <a href="<?php echo base_url('coach/my-payments'); ?>" class="btn btn-default">View</a>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
         <div class="alert alert-info text-center">
             <i class="fa fa-list-alt fa-3x"></i>
             <h5><?php echo $waiting_approval; ?> Waiting Payment</h5>
-            <a href="<?php echo base_url('coach/score-card/needs-scored/'); ?>" class="btn btn-default">View</a>
+            <a href="<?php echo base_url('coach/my-payments/waiting-to-be-paid/'); ?>" class="btn btn-default">View</a>
         </div>
     </div>
 

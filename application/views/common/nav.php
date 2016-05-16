@@ -23,7 +23,7 @@
                 </li>
                 <li id="nav-my-scores"><a href="<?php echo base_url('user/my-scores'); ?>">My Scores</a></li>
                 <li id="nav-coaches"><a href="<?php echo base_url('user/coaches'); ?>">Coaches</a></li>
-
+                
                 <li class="dropdown hidden-lg hidden-md">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Settings <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -43,7 +43,6 @@
                     <ul class="dropdown-menu">
                         <li id="nav-my-profile"><a href="<?php echo base_url('user/my-profile'); ?>"><i class="fa fa-user"></i> My Profile</a></li>
                         <li id="nav-edit-profile"><a href="<?php echo base_url('user/my-profile/edit'); ?>"><i class="fa fa-pencil"></i> Edit Profile</a></li>
-                        <li id="nav-payments"><a href="<?php echo base_url('user/payment/all'); ?>"><i class="fa fa-money"></i> Payments</a></li>
                         <li><a href="<?php echo base_url('user/logout'); ?>"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
                 </li>

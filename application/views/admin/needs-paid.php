@@ -7,7 +7,7 @@
 
             <div class="row">
                 <div class="col-md-9">
-                    <div class="well well-sm">
+
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 Awaiting Payment
@@ -78,7 +78,7 @@
                         <?php if($needs_paid) { ?>
                             <button id="finalize" class="btn btn-primary noSubmit" disabled>Finalize Payment</button>
                         <?php } ?>
-                    </div>
+                  
                 </div>
                 <div class="col-md-3 text-center">
                     <div class="well well-sm">

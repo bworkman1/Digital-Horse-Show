@@ -54,7 +54,7 @@ class Scorecard extends CI_Controller
 
     public function needs_scored()
     {
-        $this->load->model('coach/Grades');
+        $this->load->model('Coach/Grades');
         $data['videos'] = $this->Grades->needsGraded($this->session->userdata('user_id'));
 
         $this->load->view('coach/needs-scored', $data);
@@ -113,7 +113,7 @@ class Scorecard extends CI_Controller
         if($this->input->is_ajax_request()) {
             $this->output->unset_template();
 
-            $this->load->model('coach/grades');
+            $this->load->model('Coach/Grades');
 
             $id = (int)$this->uri->segment(4);
             if(($this->ion_auth->in_group('coach') || $this->ion_auth->in_group('admin')) && !empty($id)) {
@@ -167,7 +167,7 @@ class Scorecard extends CI_Controller
                 if($error) {
                     $feedback = array('error'=>'Invalid input in '.$field.' field ');
                 } else {
-                    $feedback = $this->grades->submitGrade($_POST, $id);
+                    $feedback = $this->Grades->submitGrade($_POST, $id);
                 }
             } else {
                 $feedback = array('error' => 'You are not authorized to grade this users ride, if this is an error please contact support');

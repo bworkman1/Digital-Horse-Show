@@ -1,5 +1,5 @@
 </div>
-<h5 class="page-title"><i class="fa fa-money"></i> All Coach Payments</h5>
+<h5 class="page-title"><i class="fa fa-gavel"></i> Waiting to be Scored</h5>
 
 <div class="container">
     <div class="well well-sm">

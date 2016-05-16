@@ -17,10 +17,15 @@
                 <li id="nav-dashboard"><a href="<?php echo base_url('admin/scorecards'); ?>">Score Cards</a></li>
 
                 <li id="nav-coaches"><a href="<?php echo base_url('user/coaches'); ?>">Coaches</a></li>
-                <li class="nav-users">
+                <li id="nav-users">
                     <a href="<?php echo base_url('admin/users'); ?>" role="button" aria-haspopup="true" aria-expanded="false">All Users </a>
                 </li>
-
+                <li id="nav-payments">
+                    <a href="<?php echo base_url('admin/view/all-payments/'); ?>" role="button" aria-haspopup="true" aria-expanded="false">Payments</a>
+                </li>
+                <li id="nav-my-profile" class="visible-sm visible-xs"><a href="<?php echo base_url('user/my-profile'); ?>"><i class="fa fa-user"></i> My Profile</a></li>
+                <li id="nav-edit-profile" class="visible-sm visible-xs"><a href="<?php echo base_url('user/my-profile/edit'); ?>"><i class="fa fa-pencil"></i> Edit Profile</a></li>
+                <li class="visible-sm visible-xs"><a href="<?php echo base_url('user/logout'); ?>"><i class="fa fa-power-off"></i> Logout</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
@@ -31,7 +36,6 @@
                     <ul class="dropdown-menu">
                         <li id="nav-my-profile"><a href="<?php echo base_url('user/my-profile'); ?>"><i class="fa fa-user"></i> My Profile</a></li>
                         <li id="nav-edit-profile"><a href="<?php echo base_url('user/my-profile/edit'); ?>"><i class="fa fa-pencil"></i> Edit Profile</a></li>
-                        <li id="nav-payments"><a href="<?php echo base_url('user/payment/all'); ?>"><i class="fa fa-money"></i> Payments</a></li>
                         <li><a href="<?php echo base_url('user/logout'); ?>"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
                 </li>

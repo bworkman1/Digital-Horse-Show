@@ -127,7 +127,7 @@
         </div>
     </div>
 
-
+    <div id="menu-page" data-page="<?php echo 'grade'; ?>"></div>
     <?php
         if($video->user_id == $this->session->userdata('user_id')) {
             $data['viewed'] = $video->user_viewed;

@@ -133,6 +133,78 @@ class Upload_video extends CI_Controller
                    exit;*/
     }
 
+
+    public function saveVideoData()
+    {
+        $this->output->unset_template();
+        $this->load->model('Uploads');
+
+        $this->form_validation->set_rules('client_name', 'Video Name', 'required|max_length[100]|xss_clean|required|xss_clean');
+        $this->form_validation->set_rules('location', 'Location', 'max_length[200]|xss_clean');
+        $this->form_validation->set_rules('size', 'Size', 'max_length[200]|xss_clean|required');
+        $this->form_validation->set_rules('path', 'Path', 'max_length[255]|xss_clean|required');
+        $this->form_validation->set_rules('orig_name', 'Video Name', 'max_length[255]|xss_clean|required');
+        $this->form_validation->set_rules('lat', 'Latitude', 'max_length[100]|xss_clean');
+        $this->form_validation->set_rules('lng', 'Longitude', 'max_length[100]|xss_clean');
+        $this->form_validation->set_rules('coach_id', 'Coach', 'integer|required|xss_clean');
+        $this->form_validation->set_rules('scorecard_id', 'Scoring Type', 'integer|required|xss_clean');
+        $this->form_validation->set_rules('user_id', 'User Id', 'integer|required|xss_clean');
+
+        if ($this->form_validation->run() == true) {
+            extract($_POST);
+            $date = date('Y-m-d H:i:s');
+            $input = array(
+                'client_name'       => $client_name,
+                'location'          => $location,
+                'date'              => $date,
+                'uploaded'          => $date,
+                'coach_id'          => $coach_id,
+                'scorecard_id'      => $scorecard_id,
+                'date'              => date('Y-m-d'),
+                'orig_name'         => $orig_name,
+                'size'              => $size,
+                'user_id'           => $this->session->userdata('user_id'),
+                'path'              => $path,
+                'orig_name'         => $orig_name
+            );
+
+            if(!empty($lat) && !empty($lng)) {
+                $input['cords'] = $lat.'|'.$lng;
+            }
+            $feedback = $this->Uploads->saveVideoData($input);
+            $this->session->set_flashdata('success', 'Video uploaded successfully');
+        } else {
+            $feedback = array('error' => validation_errors('<span><i class="fa fa-exclamation-triangle"></i> ','</span><br>'));
+        }
+
+        echo json_encode($feedback);
+        exit;
+    }
+
+    public function test() {
+        $this->output->unset_template();
+        $imgLocation = FCPATH.'uploads\bworkman\2016\05\PureWow Presents How to Clean Silver with Ketchup (2).jpg';
+        $videoPath = FCPATH.'uploads\bworkman\2016\05\PureWow Presents How to Clean Silver with Ketchup (2).mp4';
+
+        $path = 'C:\MAMP\htdocs\digitalhorseshow\ffmpeg\bin\ffmpeg';
+        $size = '454x256';
+        $getFromSecond = '5';
+        echo $videoPath.'<br>';
+        echo $imgLocation.'<br>';
+        $cmd = "$path -i $videoPath -an -ss $getFromSecond -s $size $imgLocation";
+
+        if(shell_exec($cmd)) {
+            echo 'Here';
+            $img = $imgLocation;
+        } else {
+            echo 'There';
+            $img = '';
+        }
+        echo $img;
+        exit;
+    }
+
+
 }
 
 ?>

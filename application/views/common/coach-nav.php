@@ -14,6 +14,8 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li id="nav-dashboard"><a href="<?php echo base_url('coach/dashboard'); ?>">Dashboard</a></li>
+                <li id="nav-grade"><a href="<?php echo base_url('coach/scorecard/needs-scored'); ?>">Grade Videos</a></li>
+                <li id="nav-payments"><a href="<?php echo base_url('coach/my-payments/'); ?>">My Payments</a></li>
                 <li class="dropdown hidden-lg hidden-md">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Settings <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -23,14 +25,7 @@
                     </ul>
                 </li>
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Coach <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url('user/my-profile'); ?>"><i class="fa fa-users fa-fw"></i> My Students</a></li>
-                        <li><a href="<?php echo base_url('user/my-profile/edit'); ?>"><i class="fa fa-bullhorn fa-fw"></i> Score Cards</a></li>
-                        <li><a href="<?php echo base_url('user/logout'); ?>"><i class="fa fa-flash fa-fw"></i> Other</a></li>
-                    </ul>
-                </li>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
@@ -41,7 +36,6 @@
                     <ul class="dropdown-menu">
                         <li id="nav-my-profile"><a href="<?php echo base_url('user/my-profile'); ?>"><i class="fa fa-user"></i> My Profile</a></li>
                         <li id="nav-edit-profile"><a href="<?php echo base_url('user/my-profile/edit'); ?>"><i class="fa fa-pencil"></i> Edit Profile</a></li>
-                        <li id="nav-payments"><a href="<?php echo base_url('user/payment/all'); ?>"><i class="fa fa-money"></i> Payments</a></li>
                         <li><a href="<?php echo base_url('user/logout'); ?>"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
                 </li>

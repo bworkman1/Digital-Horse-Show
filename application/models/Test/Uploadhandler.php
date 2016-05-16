@@ -43,7 +43,9 @@ class UploadHandler extends CI_Model
     function __construct($options = null, $initialize = true, $error_messages = null) {
         $this->Uploads->set_image_path();
         $this->response = array();
+
         
+
         $this->options = array(
             'script_url' => $this->get_full_url().'/'.$this->basename($this->get_server_var('SCRIPT_NAME')),
             'upload_dir' =>  $this->Uploads->mUploadPath.'/',
@@ -1368,13 +1370,23 @@ class UploadHandler extends CI_Model
             }
         }
 
+        $date = date('Y-m-d H:i:s');
         $response = array($this->options['param_name'] => $files);
         $response['data'] = array(
-            'dir' => $this->options['upload_dir'],
-            'full' => $this->options['upload_dir'].'/'.$upload['name'],
-            'size' => filesize($this->options['upload_dir'].'/'.$upload['name']),
+            'path' => str_replace('//', '/', ltrim($this->options['upload_dir'].'/'.$upload['name'], '.')),
+            'orig_name'         => $upload['name'],
+            'size'              => filesize($this->options['upload_dir'].'/'.$upload['name']),
+            'file_type'         => $upload['type'],
+            'client_name'       => $_POST['name'],
+            'date'              => $date,
+            'uploaded'          => $date,
+            'coach_id'          => $_POST['coach'],
+            'scorecard_id'      => $_POST['card_id'],
+            'user_id'           => $this->session->userdata('user_id'),
+            'location'          => $_POST['location'],
+            'lat'               => $_POST['lat'],
+            'lng'               => $_POST['lng'],
         );
-
         return $this->generate_response($response, $print_response);
     }
 

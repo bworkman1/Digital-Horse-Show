@@ -19,7 +19,7 @@ class Dashboard extends CI_Controller
         $this->load->js('assets/themes/default/js/admin/admin-dashboard.js');
         $this->output->set_template('default');
 
-        $this->load->model('admin/Widgets');
+        $this->load->model('Admin/Widgets');
 
         if (!$this->ion_auth->in_group('admin')) {
             redirect('user/dashboard');
