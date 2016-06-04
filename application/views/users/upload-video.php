@@ -4,7 +4,7 @@
 <?php if($user->coaching_credits>0) { ?>
     <?php echo form_open_multipart('user/upload-video/upload', array('id' => 'upload-form', 'data-save'=>base_url('user/upload-video/saveVideoData'), 'data-redirect'=>base_url('user/my-uploads'))); ?>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-md-offset-3">
             <div class="well well-sm wow fadeInUp" data-wow-delay="200ms">
                 <div id="upload-heading"></div>
                 <?php $this->load->view('ui-elements/ui-feedback'); ?>
@@ -14,9 +14,24 @@
                     <input id="video-name" name="name" type="text" value="" class="form-control input-md" required maxlength="100">
                 </fieldset>
 
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset class="form-group">
+                            <label> Barn Name:</label>
+                            <input type="text" maxlength="100" class="form-control" id="barn" name="barn">
+                        </fieldset>
+                    </div>
+                    <div class="col-md-6">
+                        <fieldset class="form-group">
+                            <label> Horse Name:</label>
+                            <input type="text" maxlength="60" class="form-control" id="horse" name="horse">
+                        </fieldset>
+                    </div>
+                </div>
+
                 <fieldset class="form-group">
-                    <label>Video Location:</label>
-                    <input id="pac-input" name="location" type="text" value="" class="form-control input-md" maxlength="100">
+                    <label> Comment:</label>
+                    <textarea class="form-control" maxlength="200" id="comment" name="comment"></textarea>
                 </fieldset>
 
                 <br>
@@ -48,7 +63,7 @@
                     </div>
                     <div class="col-sm-4">
                         <br>
-                        <p><button id="coach-help" class="btn btn-info" data-toggle="modal" data-target="#coach-help-modal">Need Help?</button></p>
+                        <p><button id="coach-help" class="btn btn-info" data-toggle="modal" data-target="#coach-help-modal">More Information</button></p>
                     </div>
                 </div>
 
@@ -117,12 +132,7 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <?php echo '<div class="alert alert-primary" style="font-size: 1.3em;  font-weight: bold;"><i class="fa fa-question-circle"></i> You have '.$user->coaching_credits.' coaching credits left.</div>'; ?>
-            <div class="well well-sm wow fadeInUp" data-wow-delay="400ms">
-                <div id="map" style="height: 400px; width: 100%"></div>
-            </div>
-        </div>
+
 
     </div>
 
@@ -278,7 +288,7 @@
 
                         echo '<div class="row">';
                         echo '<div class="col-xs-6">';
-                        echo '<a href="'.base_url('user/profile/'.$coach->profile_name).'" target="_blank" class="btn btn-primary btn-sm">View Profile</a>';
+                        echo '<a href="'.base_url('profile/user/'.$coach->profile_name).'" target="_blank" class="btn btn-primary btn-sm">View Profile</a>';
                         echo '</div>';
                         echo '<div class="col-xs-6">';
                         echo '<a  href="#" class="coach-selected btn btn-info btn-sm" data-id="'.$coach->id.'">Pick Me</a>';

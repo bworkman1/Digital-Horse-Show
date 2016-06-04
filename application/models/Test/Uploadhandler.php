@@ -44,7 +44,6 @@ class UploadHandler extends CI_Model
         $this->Uploads->set_image_path();
         $this->response = array();
 
-        
 
         $this->options = array(
             'script_url' => $this->get_full_url().'/'.$this->basename($this->get_server_var('SCRIPT_NAME')),
@@ -1383,9 +1382,9 @@ class UploadHandler extends CI_Model
             'coach_id'          => $_POST['coach'],
             'scorecard_id'      => $_POST['card_id'],
             'user_id'           => $this->session->userdata('user_id'),
-            'location'          => $_POST['location'],
-            'lat'               => $_POST['lat'],
-            'lng'               => $_POST['lng'],
+            'barn'              => $_POST['barn'],
+            'comment'           => $_POST['comment'],
+            'horse'             => $_POST['horse'],
         );
         return $this->generate_response($response, $print_response);
     }

@@ -39,23 +39,6 @@ class Upload_video extends CI_Controller
         $this->load->css('assets/themes/default/plugins/alertify/css/alertify.min.css');
         $this->load->css('assets/themes/default/plugins/alertify/css/themes/semantic.css');
         $this->load->css('assets/themes/default/css/select2.min.css');
-        
-        $lng = $this->session->set_userdata('lng', '40.2313420');
-        $lat = $this->session->set_userdata('lat', '-82.4500300');
-
-        if(empty($lat) && empty($lng)) {
-            $this->session->set_userdata('lat', '40.2313420');
-            $this->session->set_userdata('lng', '-82.4500300');
-        }
-
-        $this->load->model('Coach/Coaches');
-        $this->load->library('Geolocation');
-        $this->load->config('geolocation', true);
-
-        $config = $this->config->config['geolocation'];
-
-        $this->geolocation->initialize($config);
-        $this->geolocation->set_ip_address('77.52.107.69');
 
         $data['options'] = $this->Grades->getUserOptions();
         $data['coaches'] = $this->Coaches->coachOptions();
@@ -69,7 +52,7 @@ class Upload_video extends CI_Controller
         $this->output->unset_template();
         $this->load->model('Uploads');
         $this->Uploads->set_image_path();
-        $response = $this->load->model('Test/Uploadhandler');
+        $this->load->model('Test/Uploadhandler');
         /*
                 error_reporting(0);
                 $config = array(
@@ -140,12 +123,12 @@ class Upload_video extends CI_Controller
         $this->load->model('Uploads');
 
         $this->form_validation->set_rules('client_name', 'Video Name', 'required|max_length[100]|xss_clean|required|xss_clean');
-        $this->form_validation->set_rules('location', 'Location', 'max_length[200]|xss_clean');
+        $this->form_validation->set_rules('barn', 'Barn Name', 'max_length[200]|xss_clean');
+        $this->form_validation->set_rules('horse', 'Horse Name', 'max_length[60]|xss_clean');
+        $this->form_validation->set_rules('comment', 'Comment', 'max_length[200]|xss_clean');
         $this->form_validation->set_rules('size', 'Size', 'max_length[200]|xss_clean|required');
         $this->form_validation->set_rules('path', 'Path', 'max_length[255]|xss_clean|required');
         $this->form_validation->set_rules('orig_name', 'Video Name', 'max_length[255]|xss_clean|required');
-        $this->form_validation->set_rules('lat', 'Latitude', 'max_length[100]|xss_clean');
-        $this->form_validation->set_rules('lng', 'Longitude', 'max_length[100]|xss_clean');
         $this->form_validation->set_rules('coach_id', 'Coach', 'integer|required|xss_clean');
         $this->form_validation->set_rules('scorecard_id', 'Scoring Type', 'integer|required|xss_clean');
         $this->form_validation->set_rules('user_id', 'User Id', 'integer|required|xss_clean');
@@ -155,7 +138,9 @@ class Upload_video extends CI_Controller
             $date = date('Y-m-d H:i:s');
             $input = array(
                 'client_name'       => $client_name,
-                'location'          => $location,
+                'barn'              => $barn,
+                'horse'             => $horse,
+                'user_comment'      => $comment,
                 'date'              => $date,
                 'uploaded'          => $date,
                 'coach_id'          => $coach_id,
@@ -168,9 +153,6 @@ class Upload_video extends CI_Controller
                 'orig_name'         => $orig_name
             );
 
-            if(!empty($lat) && !empty($lng)) {
-                $input['cords'] = $lat.'|'.$lng;
-            }
             $feedback = $this->Uploads->saveVideoData($input);
             $this->session->set_flashdata('success', 'Video uploaded successfully');
         } else {
