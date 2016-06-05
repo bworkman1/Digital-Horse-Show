@@ -152,4 +152,33 @@ class Widgets extends CI_Model
         return $full;
     }
 
+    public function getWhatsNewData()
+    {
+        $this->db->limit(10);
+        $result = $this->db->get('whats_new');
+        return $result->result();
+    }
+
+    public function specialOffers()
+    {
+        $this->db->limit(10);
+        $result = $this->db->get('special_offers');
+        return $result->result();
+    }
+
+    public function getUsersRemainingCredits($id)
+    {
+        $this->db->select('coaching_credits');
+        $result = $this->db->get_where('users', ['id' => $id]);
+        return $result->row();
+    }
+
+    public function getUserPointsSum($id)
+    {
+        $this->db->select_sum('star_rating');
+        $this->db->where('user_id', $id);
+        $result = $this->db->get('video_uploads');
+        return $result->row();
+    }
+
 }

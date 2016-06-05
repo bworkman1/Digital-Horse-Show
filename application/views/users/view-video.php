@@ -45,26 +45,26 @@
     </div>
 </div>
 
-
-<div class="row">
-    <div class="col-md-6">
-        <?php
-            $data['profile'] = $coach;
-            $data['type'] = 'coach';
-            $this->load->view('ui-elements/user-profile-card', $data);
-        ?>
-    </div>
-    <div class="col-md-6">
-        <?php
-            $data['profile'] = $user;
-            $data['type'] = 'user';
-            $this->load->view('ui-elements/user-profile-card', $data);
-        ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <?php
+                $data['profile'] = $coach;
+                $data['type'] = 'coach';
+                $this->load->view('ui-elements/user-profile-card', $data);
+            ?>
+        </div>
+        <div class="col-md-6">
+            <?php
+                $data['profile'] = $user;
+                $data['type'] = 'user';
+                $this->load->view('ui-elements/user-profile-card', $data);
+            ?>
+        </div>
     </div>
 </div>
 
 <input type="hidden" id="name" value="<?php echo $this->session->userdata('first_name').' '.$this->session->userdata('last_name'); ?>">
 <input type="hidden" id="url" value="<?php echo $this->session->userdata('profile_name'); ?>">
-
 
 <div id="menu-page" data-page="<?php echo $page_name; ?>"></div>

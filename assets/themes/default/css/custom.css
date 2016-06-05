@@ -695,6 +695,9 @@ img.bg {
 .survey-widget ul li a {
 	float: right;
 }
+#whats-new-widget li {
+	border-bottom: 1px solid #c4c4c4;
+}
 /* Awards Element */
 .awards img {
 	margin: 5px;

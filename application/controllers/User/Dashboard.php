@@ -34,6 +34,12 @@ class Dashboard extends CI_Controller
             exit;
         } else {
             $this->load->model('User_videos');
+            $this->load->model('Widgets');
+
+            $data['points'] = $this->Widgets->getUserPointsSum($this->session->userdata('user_id'));
+            $data['remaining_credits'] = $this->Widgets->getUsersRemainingCredits($this->session->userdata('user_id'));
+            $data['whats_new'] = $this->Widgets->getWhatsNewData();
+            $data['special_offers'] = $this->Widgets->specialOffers();
             $data['recent_scores'] = $this->User_videos->getGradedVideos($this->session->userdata('user_id'), 5);
             $this->load->view('users/users-dashboard', $data);
         }
