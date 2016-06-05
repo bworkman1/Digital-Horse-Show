@@ -18,6 +18,13 @@ class Score_card extends CI_Model
             'child_of' => $_POST['child_of'],
         ));
         if($this->db->insert_id()>0) {
+            $data = [
+                'what'      =>'Added a new scorecard '.$_POST['name'].' - '.$_POST['option_name'],
+                'ref_id'    => $this->db->insert_id(),
+                'type'      => 'scorecard'
+            ];
+            $this->db->insert('whats_new', $data);
+
             return $this->db->insert_id();
         }
         return false;

@@ -21,7 +21,9 @@ class Scorecard extends CI_Controller
 
     public function index()
     {
-
+        $this->load->model('Coach/Grades');
+        $data['scorecards'] = $this->Grades->getAllScorecards();
+        $this->load->view('common/scorecards-list', $data);
     }
 
     public function view()
@@ -40,6 +42,30 @@ class Scorecard extends CI_Controller
                 $this->session->set_flashdata('error', 'Invalid Selection');
                 redirect('user/dashboard');
                 exit;
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Invalid Selection');
+            redirect('user/dashboard');
+            exit;
+        }
+    }
+
+    public function preview()
+    {
+        $this->output->set_template('full-screen');
+        $scorecard_id = $this->uri->segment(4);
+        if($scorecard_id) {
+            $this->load->model('Coach/Grades');
+            $data = $this->Grades->getUsersScorecard($scorecard_id);
+
+            if($data) {
+                $this->output->set_common_meta('Viewing Score | '.$data['scorecard']->option_name, 'Digital Horse Show My Dashboard', '');
+                $this->load->view('common/scored-video-7-preview', $data);
+
+            } else {
+              //  $this->session->set_flashdata('error', 'Invalid Selection');
+               // redirect('user/dashboard');
+                //exit;
             }
         } else {
             $this->session->set_flashdata('error', 'Invalid Selection');

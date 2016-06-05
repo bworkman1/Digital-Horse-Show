@@ -32,7 +32,7 @@
                         <li><a href="<?php echo base_url('user/logout'); ?>">Logout</a></li>
                     </ul>
                 </li>
-
+                <li id="nav-coaches"><a href="<?php echo base_url('user/scorecard'); ?>">Scorecards</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">

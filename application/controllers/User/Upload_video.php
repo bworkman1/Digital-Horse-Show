@@ -40,6 +40,9 @@ class Upload_video extends CI_Controller
         $this->load->css('assets/themes/default/plugins/alertify/css/themes/semantic.css');
         $this->load->css('assets/themes/default/css/select2.min.css');
 
+
+        $this->load->model('Coach/Coaches');
+
         $data['options'] = $this->Grades->getUserOptions();
         $data['coaches'] = $this->Coaches->coachOptions();
         $data['user'] = $this->ion_auth->user()->row();

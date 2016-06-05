@@ -147,7 +147,7 @@ class Grades extends CI_Model
         return $data;
     }
 
-    private function getScorecardSection($id, $table)
+    public function getScorecardSection($id, $table)
     {
         return $this->db->get_where('scorecard_sections_7', array('id'=> $id))->row();
     }
@@ -180,6 +180,12 @@ class Grades extends CI_Model
     {
         $this->db->where('id', $video_id);
         $this->db->update('video_uploads', array('user_viewed'=>date('Y-m-d H:i:s')));
+    }
+
+    public function getAllScorecards()
+    {
+        $result = $this->db->get('score_cards');
+        return $result->result();
     }
 
 }

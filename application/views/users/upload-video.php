@@ -5,6 +5,8 @@
     <?php echo form_open_multipart('user/upload-video/upload', array('id' => 'upload-form', 'data-save'=>base_url('user/upload-video/saveVideoData'), 'data-redirect'=>base_url('user/my-uploads'))); ?>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
+            <?php echo '<div class="alert alert-primary" style="font-size: 1.3em;  font-weight: bold;"><i class="fa fa-question-circle"></i> You have '.$user->coaching_credits.' coaching credits left.</div>'; ?>
+
             <div class="well well-sm wow fadeInUp" data-wow-delay="200ms">
                 <div id="upload-heading"></div>
                 <?php $this->load->view('ui-elements/ui-feedback'); ?>
