@@ -177,6 +177,7 @@ class UploadHandler extends CI_Model
     protected function initialize() {
         $allowed =  array('mpeg', 'mpg', 'mp4', 'mpe', 'qt', 'mov', 'avi');
         $filename = $_FILES['file']['name'];
+
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         if(!in_array($ext,$allowed) ) {
             echo json_encode(['error' => 'Invalid file type']);
@@ -1065,6 +1066,7 @@ class UploadHandler extends CI_Model
 
     protected function handle_file_upload($uploaded_file, $name, $size, $type, $error,
                                           $index = null, $content_range = null) {
+        $uploaded_file = str_replace(' ', '_', $uploaded_file);
         $file = new \stdClass();
         $file->name = $this->get_file_name($uploaded_file, $name, $size, $type, $error,
             $index, $content_range);

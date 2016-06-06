@@ -2,12 +2,13 @@ This is a FFmpeg win64 static build by Kyle Schwarz.
 
 Zeranoe's FFmpeg Builds Home Page: <http://ffmpeg.zeranoe.com/builds/>
 
-FFmpeg version: 20160512-git-cd244fa
+FFmpeg version: 20160531-git-a1953d4
 
 This FFmpeg build was configured with:
   --enable-gpl
   --enable-version3
   --disable-w32threads
+  --enable-nvenc
   --enable-avisynth
   --enable-bzlib
   --enable-fontconfig

@@ -96,7 +96,7 @@ class Uploads extends CI_Model
         } else {
             $data = $this->upload->data();
             $data['system_path'] = ltrim($this->mUploadPath . '/' . $data['file_name'], '.');
-            $data['thumb'] = $this->getVideoThumbNail($data['system_path']);
+            $data['thumb'] = $this->getVideoThumbNail($data['full_path']);
             if(empty($data['thumb'])) {
                 $data['thumb'] = 'assets/themes/default/images/video-default.jpg';
             }
@@ -268,18 +268,30 @@ class Uploads extends CI_Model
     {
         $pathArray = explode('/', $videoPath);
         $imageFileArray = explode('.', end($pathArray));
-        $imgLocation = ltrim($this->mUploadPath, '/').'/thumbs/'.$imageFileArray[0].'.jpg';
-
-        $path = 'C:\MAMP\htdocs\digitalhorseshow\ffmpeg\bin\ffmpeg';
+        $rand = rand(100, 999999);
+        $imgPath = str_replace('//', '/', str_replace('\\', '/', FCPATH.ltrim($this->mUploadPath, '.').'/thumbs/'.$imageFileArray[0].'_'.$rand.'.jpg'));
+        $imgLocation = escapeshellarg($imgPath);
+        $videoPath =  escapeshellarg(str_replace('//', '/', str_replace('\\', '/', FCPATH.$videoPath)));
+        $path = str_replace('//', '/', str_replace('\\', '/', FCPATH)).'ffmpeg/bin/ffmpeg';
         $size = '454x256';
         $getFromSecond = '5';
         $cmd = "$path -i $videoPath -an -ss $getFromSecond -s $size $imgLocation";
 
-        if(shell_exec($cmd)) {
-            $img = $imgLocation;
+        shell_exec($cmd);
+
+
+        log_message('error', 'IMGLOCATION: '.$imgPath);
+
+        if(file_exists($imgPath)) {
+            log_message('error', 'FILE EXISTS');
+
+            $imgPath = str_replace('C:/MAMP/htdocs/digitalhorseshow/', '', $imgPath);
+            $img = $imgPath;
         } else {
+            log_message('error', 'FILE DESENT EXISTS');
             $img = '';
         }
+        log_message('error', $img);
         return $img;
     }
 
