@@ -36,6 +36,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="<?php echo base_url('assets/themes/default/css/ie10-viewport-bug-workaround.css'); ?>" rel="stylesheet">
 
+    <?php
+        $segments = $this->uri->segment_array();
+        if(end($segments) == 'create-coach-account') {
+            echo '<link href="https://fonts.googleapis.com/css?family=Petit+Formal+Script" rel="stylesheet">';
+        }
+    ?>
+
     <link rel="icon" href="assets/themes/default/images/favicon.ico">
     <link rel="shortcut icon" href="<?php echo base_url('assets/themes/default/images/favicon.png'); ?>" type="image/x-icon"/>
     <meta property="og:image" content="<?php echo base_url('assets/themes/default/images/facebook-thumb.png'); ?>"/>

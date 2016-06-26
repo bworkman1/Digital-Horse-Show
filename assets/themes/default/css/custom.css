@@ -724,7 +724,113 @@ img.bg {
 	color: #ffffff;
 	font-size: 1.4em;
 }
+/* Coach Create account screen */
+.coach-list {
+	margin-bottom: 15px;
+	border-bottom: 1px solid purple;
+}
+.coach-list, .coach-list h5 {
+	color: #ffffff;
+}
+.coach-list .round-icon-bkg {
+	margin-top: 15px;
+}
+.coach-list .round-icon-bkg i {
+	background: #9C27B0;
+	display: inline-block;
+	border-radius: 60px;
+	padding: 15px;
+	box-shadow: 0px 0px 2px #888;
+}
+#coach-login .emphasis {
+	text-align: center;
+	color: #ffffff;
+	font-style: italic;
+	text-decoration: underline;
+	margin-bottom: 35px;
+}
+.circle-bkg {
+	background: #9C27B0;
+	border-radius: 100%;
+	padding: 4px 8px;
+	box-shadow: 0px 0px 2px #888;
+	color: #ffffff;
+}
+#coach-login input, #coach-login select {
+	border: 2px solid #dddddd;
+	padding: 2px 4px;
+}
+#coach-login .checkbox {
+	border: none;
+	padding: inherit;
+	float: left;
+}
+#coach-login .nav-tabs>li {
+	text-align:center;
+	width: 25%;
+}
+input.signature {
+	font-family: 'Petit Formal Script', cursive;
+}
+#step-title {
+	color: #ffffff;
+}
+.board {
+	margin: 60px auto;
+	height: 500px;
+	background: #fff;
+	/*box-shadow: 10px 10px #ccc,-10px 20px #ddd;*/
+}
+.board .nav-tabs {
+	position: relative;
+	/* border-bottom: 0; */
+	/* width: 80%; */
 
+	margin: 40px auto;
+	margin-bottom: 0;
+	box-sizing: border-box;
+}
+.board > div.board-inner {
+	background: #fafafa url(http://subtlepatterns.com/patterns/geometry2.png);
+	background-size: 30%;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+@media( max-width: 585px) {
+	#coach-login .nav-tabs>li a {
+		background: #9C27B0;
+		border-radius: 100%;
+		padding: 2px 4px;
+		box-shadow: 0px 0px 2px #888;
+		color: #ffffff;
+	}
+	.board {
+		width: 90%;
+		height: auto !important;
+	}
+	span.round-tabs {
+		font-size: 16px;
+		width: 50px;
+		height: 50px;
+		line-height: 50px;
+	}
+	.tab-content .head {
+		font-size: 20px;
+	}
+	.nav-tabs > li a {
+		width: 50px;
+		height: 50px;
+		line-height: 50px;
+	}
+	li.active:after {
+		content: " ";
+		position: absolute;
+		left: 35%;
+	}
+	.btn-outline-rounded {
+		padding: 12px 20px;
+	}
+}
 @media screen and (max-width: 1024px) { /* Specific to this particular image */
 	img.bg {
 		left: 50%;
@@ -736,5 +842,8 @@ img.bg {
 	/* Our Coaches */
 	.coaches .well {
 		text-align: center;
+	}
+	.alertify .ajs-dialog {
+		max-width: inherit;
 	}
 }

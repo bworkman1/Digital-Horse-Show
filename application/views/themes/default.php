@@ -9,7 +9,7 @@
             } elseif($this->session->userdata('user_type') == 'coach') {
                 $this->load->view('common/coach-nav');
             } else {
-                $this->load->view('common/nav');
+                $this->load->view('common/not-logged-in-nav');
             }
         ?>
 

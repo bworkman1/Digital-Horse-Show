@@ -39,10 +39,12 @@
                 }
 
                 echo '<a href="' . $link . '">';
+
                 if (!file_exists($val->thumb)) {
-                    $val->thumb = base_url('assets/themes/default/images/video-default.jpg');
+                    $val->thumb = 'assets/themes/default/images/video-default.jpg';
                 }
-                echo '<img src="' . $val->thumb . '" class="img-responsive">';
+
+                echo '<img src="' . base_url($val->thumb) . '" class="img-responsive">';
                 echo '</a>';
 
                 echo '<h4>' . htmlspecialchars($val->client_name) . '</h4>';
