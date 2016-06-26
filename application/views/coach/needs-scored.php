@@ -71,8 +71,13 @@
         }
         echo '</div>';
     } else {
-        echo '<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> You haven\'t uploaded any videos yet</div>';
-        echo '<a href="'.base_url('user/upload-video').'" class="btn btn-primary"><i class="fa fa-upload"></i> Upload Video</a>';
+        if($this->session->userdata('user_type') == 'coach') {
+            echo '<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> No users have submitted any videos to you yet, check back later.</div>';
+        } else {
+            echo '<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> You haven\'t uploaded any videos yet</div>';
+            echo '<a href="'.base_url('user/upload-video').'" class="btn btn-primary"><i class="fa fa-upload"></i> Upload Video</a>';
+        }
+
     }
 
     echo $links;

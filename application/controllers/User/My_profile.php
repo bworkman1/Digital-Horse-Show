@@ -74,6 +74,13 @@ class My_profile extends CI_Controller
         $this->form_validation->set_rules('email_public', 'Email Public', 'min_length[3]|max_length[3]|alpha');
         $this->form_validation->set_rules('profile_public', 'Profile Public', 'min_length[3]|max_length[3]|alpha');
 
+        $this->form_validation->set_rules('available', 'Available', 'min_length[3]|max_length[3]|alpha');
+        $this->form_validation->set_rules('cost', 'Cost', 'min_length[1]|max_length[7]');
+        $this->form_validation->set_rules('address', 'Address', 'min_length[1]|max_length[50]');
+        $this->form_validation->set_rules('city', 'City', 'min_length[1]|max_length[50]');
+        $this->form_validation->set_rules('state', 'State', 'min_length[1]|max_length[2]|alpha');
+        $this->form_validation->set_rules('zip', 'Zip', 'min_length[5]|max_length[10]');
+
         if($_FILES['file']['name']) {
             $this->load->model('uploads');
             $image = $this->uploads->upload_image($_FILES['file'], 'file', 'true', array('resize'=>TRUE));
@@ -95,6 +102,12 @@ class My_profile extends CI_Controller
                 'newsletter'        => $newsletter,
                 'email_public'      => $email_public,
                 'profile_public'    => $profile_public,
+                'available'         => $available,
+                'price'         => $cost,
+                'mailing_address'         => $address,
+                'mailing_city'         => $city,
+                'mailing_state'         => $state,
+                'mailing_zip'         => $zip,
             );
 
             $this->session->set_userdata('first_name', $first_name);

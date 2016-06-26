@@ -795,7 +795,9 @@ input.signature {
 	background-size: 30%;
 	border-bottom: 1px solid #DDDDDD;
 }
-
+.radio, .checkbox {
+	margin-top: 0;
+}
 @media( max-width: 585px) {
 	#coach-login .nav-tabs>li a {
 		background: #9C27B0;

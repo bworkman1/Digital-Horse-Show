@@ -121,7 +121,7 @@ class Widgets extends CI_Model
 
     public function getCoachVideosChart()
     {
-        $sql = 'SELECT DATE_FORMAT(uploaded, "%Y-%m-%d") AS Month, COUNT(uploaded) AS videos FROM video_uploads GROUP BY DATE_FORMAT(uploaded, "%Y-%m") LIMIT 12';
+        $sql = 'SELECT DATE_FORMAT(uploaded, "%Y-%m-%d") AS Month, COUNT(uploaded) AS videos FROM video_uploads WHERE coach_id = '.$this->session->userdata('user_id').' GROUP BY DATE_FORMAT(uploaded, "%Y-%m") LIMIT 12';
         $result = $this->db->query($sql);
         $full = '';
         if($result->num_rows()>0) {

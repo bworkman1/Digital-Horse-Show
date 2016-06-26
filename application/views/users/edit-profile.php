@@ -66,6 +66,117 @@
                 <div data-target="#change-password" data-toggle="modal" class="btn btn-info pull-right">Change Password</div>
             </div>
 
+            <?php if($this->session->userdata('user_type') == 'coach') { ?>
+                <div class="well well-sm">
+                    <h5 class="border-bottom"><i class="fa fa-map-marker"></i> Mailing Address</h5>
+                    <div class="form-group">
+                        <label><span class="text-danger">*</span> Street Address:</label>
+                        <input type="text" class="form-control" name="address" required maxlength="50" value="<?php echo htmlspecialchars($user->mailing_address); ?>">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label><span class="text-danger">*</span> City:</label>
+                                <input type="text" required class="form-control" name="city" required maxlength="30"  value="<?php echo htmlspecialchars($user->mailing_city); ?>">
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label><span class="text-danger">*</span> State:</label>
+                                <select name="state" required class="form-control">
+                                    <?php
+                                    $us_state_abbrevs_names = array(
+                                        '' => 'Select State',
+                                        'AL'=>'ALABAMA',
+                                        'AK'=>'ALASKA',
+                                        'AZ'=>'ARIZONA',
+                                        'AR'=>'ARKANSAS',
+                                        'CA'=>'CALIFORNIA',
+                                        'CO'=>'COLORADO',
+                                        'CT'=>'CONNECTICUT',
+                                        'DE'=>'DELAWARE',
+                                        'DC'=>'DISTRICT OF COLUMBIA',
+                                        'FL'=>'FLORIDA',
+                                        'GA'=>'GEORGIA',
+                                        'GU'=>'GUAM GU',
+                                        'HI'=>'HAWAII',
+                                        'ID'=>'IDAHO',
+                                        'IL'=>'ILLINOIS',
+                                        'IN'=>'INDIANA',
+                                        'IA'=>'IOWA',
+                                        'KS'=>'KANSAS',
+                                        'KY'=>'KENTUCKY',
+                                        'LA'=>'LOUISIANA',
+                                        'ME'=>'MAINE',
+                                        'MD'=>'MARYLAND',
+                                        'MA'=>'MASSACHUSETTS',
+                                        'MI'=>'MICHIGAN',
+                                        'MN'=>'MINNESOTA',
+                                        'MS'=>'MISSISSIPPI',
+                                        'MO'=>'MISSOURI',
+                                        'MT'=>'MONTANA',
+                                        'NE'=>'NEBRASKA',
+                                        'NV'=>'NEVADA',
+                                        'NH'=>'NEW HAMPSHIRE',
+                                        'NJ'=>'NEW JERSEY',
+                                        'NM'=>'NEW MEXICO',
+                                        'NY'=>'NEW YORK',
+                                        'NC'=>'NORTH CAROLINA',
+                                        'ND'=>'NORTH DAKOTA',
+                                        'OH'=>'OHIO',
+                                        'OK'=>'OKLAHOMA',
+                                        'OR'=>'OREGON',
+                                        'PW'=>'PALAU',
+                                        'PA'=>'PENNSYLVANIA',
+                                        'PR'=>'PUERTO RICO',
+                                        'RI'=>'RHODE ISLAND',
+                                        'SC'=>'SOUTH CAROLINA',
+                                        'SD'=>'SOUTH DAKOTA',
+                                        'TN'=>'TENNESSEE',
+                                        'TX'=>'TEXAS',
+                                        'UT'=>'UTAH',
+                                        'VT'=>'VERMONT',
+                                        'VI'=>'VIRGIN ISLANDS',
+                                        'VA'=>'VIRGINIA',
+                                        'WA'=>'WASHINGTON',
+                                        'WV'=>'WEST VIRGINIA',
+                                        'WI'=>'WISCONSIN',
+                                        'WY'=>'WYOMING',
+                                    );
+                                    foreach($us_state_abbrevs_names as $key => $state) {
+                                        if($key == $user->mailing_state) {
+                                            echo '<option value="'.$key.'" selected>'.$state.'</option>';
+                                        } else {
+                                            echo '<option value="'.$key.'">'.$state.'</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label><span class="text-danger">*</span> Zip:</label>
+                                <input type="text" class="form-control" name="zip" required maxlength="10"  value="<?php echo htmlspecialchars($user->mailing_zip); ?>">
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-warning">Save Settings</button>
+
+                </div>
+            <?php } ?>
+
             <div class="well well-sm">
                 <h5 class="border-bottom"><i class="fa fa-bullhorn"></i> Social Settings</h5>
 
@@ -117,6 +228,32 @@
                     </div>
                 <?php } ?>
             </div>
+
+            <?php if($this->session->userdata('user_type') == 'coach') { ?>
+                <div id="coach-settings" class="well well-sm">
+                    <h5 class="border-bottom"><i class="fa fa-bullhorn"></i> Coach Settings</h5>
+                    <div class="border-bottom option">
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-xs-8 control-label" for="checkboxes"><i class="fa fa-question-circle tooltip" title="Test"></i> I'm Available</label>
+                                <div class="col-xs-4">
+                                    <div class="checkbox">
+                                        <label for="emails-on" class="pull-right">
+                                            <input type="checkbox" name="available" id="available" value="yes" <?php if($user->available=='yes'){echo 'checked';}?>>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <fieldset class="form-group">
+                        My Price
+                        <input id="cost" name="cost" type="number" value="<?php echo number_format(htmlspecialchars($user->price), 2); ?>" class="form-control input-md">
+                    </fieldset>
+
+                </div>
+            <?php } ?>
 
             <div id="settings" class="well well-sm">
 

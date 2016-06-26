@@ -92,5 +92,8 @@
                         </div>
                   </div>
             </div>
+            <div class="text-center">
+                  <a href="<?php echo base_url('create-coach-account'); ?>" class="btn btn-info">Create Coach/Judge Account</a>
+            </div>
       </div>
 </div>
