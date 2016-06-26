@@ -26,7 +26,7 @@ class Create_coach_account extends CI_Controller
 
     public function index()
     {
-        $this->load->view('Coach/create-account');
+        $this->load->view('coach/create-account');
     }
     
     private function checkIfLoggedIn()

@@ -8,6 +8,8 @@
                 $this->load->view('common/admin-nav');
             } elseif($this->session->userdata('user_type') == 'coach') {
                 $this->load->view('common/coach-nav');
+            } elseif($this->session->userdata('user_type') == 'user') {
+                $this->load->view('common/nav');
             } else {
                 $this->load->view('common/not-logged-in-nav');
             }
